@@ -16,8 +16,8 @@
 
   @else {
     @include media-breakpoint-up($media) {
-                  
-      background-image: url(#{$url}#{$path2}#{$src}); 
+
+      background-image: url(#{$url}#{$path2}#{$src});
     }
 
     background-image: url(#{$url}#{$path1}#{$src});
@@ -34,21 +34,21 @@
     top: 50%;
     bottom: auto;
     right: auto;
-    @include transform(translateX(-50%) translateY(-50%));
+    transform: translate(-50%, -50%);
   }
 
-  @else if $xy==x {
+@else if $xy==x {
     position: absolute;
     left: 50%;
     right: auto;
-    @include transform(translateX(-50%));
+    transform: translateX(-50%);
   }
 
   @else if $xy==y {
     position: absolute;
     top: 50%;
     bottom: auto;
-    @include transform(translateY(-50%));
+    transform: translateY(-50%);
   }
 }
 

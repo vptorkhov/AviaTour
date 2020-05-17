@@ -3,9 +3,9 @@ $small: rem(14);
 $url: '../img/';
 $path2: '@2x/';
 $path1: '@1x/';
+$rfs-breakpoint: 1200px !default;
 
-
-// Color system 
+// Color system
 
 $white: #fff !default;
 $gray-100: #f8f9fa !default;
@@ -43,7 +43,7 @@ $secondary: $gray-600 !default;
 $success: $green !default;
 $info: $cyan !default;
 $warning: $yellow !default;
-$danger: $red !default;
+$danger: green !default;
 $light: $gray-100 !default;
 $dark: $gray-800 !default;
 
@@ -52,6 +52,7 @@ $theme-colors: () !default;
 $theme-colors: map-merge(("primary": $primary,
     "secondary": $secondary,
     "success": $success,
+    "accent": $success,
     // "info":       $info,
     // "warning":    $warning,
     "danger": $danger,
@@ -60,7 +61,7 @@ $theme-colors: map-merge(("primary": $primary,
   ),
   $theme-colors);
 
-$body-bg: $white !default;
+$body-bg: #000 !default;
 $body-color: $gray-900 !default;
 
 // Typography
@@ -68,7 +69,8 @@ $body-color: $gray-900 !default;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: $default-font,
+$font-family-sans-serif:
+  //$default-font,
 -apple-system,
 BlinkMacSystemFont,
 "Segoe UI",
@@ -136,7 +138,7 @@ $font-weight-bolder: bolder !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: 1.5 !default;
 
-// title 
+// title
 $h1-font-size: $font-size-base * 2.5 !default;
 $h2-font-size: $font-size-base * 2 !default;
 $h3-font-size: $font-size-base * 1.75 !default;
@@ -183,7 +185,7 @@ $mark-bg: #fcf8e3 !default;
 
 // $hr-margin-y:                 $spacer !default;
 
-
+$border-radius: rem(10) !default;
 // Tables
 //
 // Customizes the `.table` component with basic values, each used across all table variations.
