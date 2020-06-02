@@ -37,57 +37,64 @@ var JSCCommon = {
 		$(".modal-close-js").click(function () {
 			$.fancybox.close();
 		});
+		$.fancybox.defaults.backFocus = false;
 	},
 	// /magnificPopupCall
 	toggleMenu: function toggleMenu() {
 		var _this = this;
 
-		_this.btnToggleMenuMobile.forEach(function (element) {
-			element.addEventListener('click', function () {
-				_this.btnToggleMenuMobile.forEach(function (element) {
-					element.classList.toggle("on");
+		if (_this.btnToggleMenuMobile) {
+			_this.btnToggleMenuMobile.forEach(function (element) {
+				element.addEventListener('click', function () {
+					_this.btnToggleMenuMobile.forEach(function (element) {
+						element.classList.toggle("on");
+					});
+
+					_this.menuMobile.classList.toggle("active");
+
+					_this.body.classList.toggle("fixed");
+
+					return false;
 				});
-
-				_this.menuMobile.classList.toggle("active");
-
-				_this.body.classList.toggle("fixed");
-
-				return false;
 			});
-		});
+		}
 	},
 	closeMenu: function closeMenu() {
 		var _this = this;
 
-		_this.btnToggleMenuMobile.forEach(function (element) {
-			element.classList.remove("on");
-		});
+		if (_this.menuMobile) {
+			_this.btnToggleMenuMobile.forEach(function (element) {
+				element.classList.remove("on");
+			});
 
-		_this.menuMobile.classList.remove("active");
+			_this.menuMobile.classList.remove("active");
 
-		_this.body.classList.remove("fixed");
+			_this.body.classList.remove("fixed");
+		}
 	},
 	mobileMenu: function mobileMenu() {
 		// закрыть/открыть мобильное меню
 		var _this = this;
 
-		_this.toggleMenu();
+		if (_this.menuMobileLink) {
+			_this.toggleMenu();
 
-		_this.menuMobileLink.forEach(function (element) {
-			element.addEventListener('click', function (e) {
-				console.log(element);
+			_this.menuMobileLink.forEach(function (element) {
+				element.addEventListener('click', function (e) {
+					console.log(element);
 
-				_this.closeMenu();
+					_this.closeMenu();
+				});
 			});
-		});
 
-		document.addEventListener('mouseup', function (event) {
-			var container = event.target.closest(".menu-mobile--js.active"); // (1)
+			document.addEventListener('mouseup', function (event) {
+				var container = event.target.closest(".menu-mobile--js.active"); // (1)
 
-			if (!container) {
-				_this.closeMenu();
-			}
-		});
+				if (!container) {
+					_this.closeMenu();
+				}
+			});
+		}
 	},
 	// /mobileMenu
 	// табы  . 
@@ -167,7 +174,7 @@ function eventHandler() {
 		return false;
 	});
 	var defaultSl = {};
-	var swiper4 = new Swiper('.color-slider', _objectSpread({}, defaultSl, (_objectSpread2 = {
+	var swiper4 = new Swiper('.color-slider', _objectSpread(_objectSpread({}, defaultSl), {}, (_objectSpread2 = {
 		slidesPerView: 'auto',
 		watchOverflow: true,
 		spaceBetween: 0,
