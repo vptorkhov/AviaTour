@@ -12,6 +12,7 @@ const JSCCommon = {
 			infobar: false,
 			touch: false,
 			type: 'inline',
+			autoFocus: false,
 			i18n: {
 				en: {
 					CLOSE: "Закрыть",
@@ -39,13 +40,13 @@ const JSCCommon = {
 
 			_this.btnToggleMenuMobile.forEach(function (element) {
 				element.addEventListener('click', function () {
-					
+
 					_this.btnToggleMenuMobile.forEach(function (element) {
 						element.classList.toggle("on");
 					});
 					_this.menuMobile.classList.toggle("active");
 					_this.body.classList.toggle("fixed");
-					
+
 					return false;
 				});
 			});
@@ -55,10 +56,10 @@ const JSCCommon = {
 	closeMenu() {
 		let _this = this;
 		if (_this.menuMobile) {
-			
+
 			_this.btnToggleMenuMobile.forEach(function (element) {
 				element.classList.remove("on");
-				
+
 			});
 			_this.menuMobile.classList.remove("active");
 			_this.body.classList.remove("fixed");
@@ -70,24 +71,24 @@ const JSCCommon = {
 		// закрыть/открыть мобильное меню
 		let _this = this;
 		if (_this.menuMobileLink) {
-			
+
 			_this.toggleMenu();
 			_this.menuMobileLink.forEach(function (element) {
 				element.addEventListener('click', function (e) {
 					console.log(element);
 					_this.closeMenu();
-					
+
 				});
 			})
 			document.addEventListener('mouseup', function (event) {
 				let container = event.target.closest(".menu-mobile--js.active"); // (1)
 				if (!container) {
 					_this.closeMenu();
-					
+
 				}
 			});
 		}
-		},
+	},
 	// /mobileMenu
 
 	// табы  . 
@@ -274,26 +275,26 @@ function eventHandler() {
 
 	});
 
-		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-		if (isIE11) {
-			$("body").prepend(`<p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p>`)
+	var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+	if (isIE11) {
+		$("body").prepend(`<p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p>`)
 
-		}
-
-		// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
-		let vh = window.innerHeight * 0.01;
-		// Then we set the value in the --vh custom property to the root of the document
-		document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-		// We listen to the resize event
-		window.addEventListener('resize', () => {
-			// We execute the same script as before
-			let vh = window.innerHeight * 0.01;
-			document.documentElement.style.setProperty('--vh', `${vh}px`);
-		});
-	};
-	if (document.readyState !== 'loading') {
-		eventHandler();
-	} else {
-		document.addEventListener('DOMContentLoaded', eventHandler);
 	}
+
+	// First we get the viewport height and we multiple it by 1% to get a value for a vh unit
+	let vh = window.innerHeight * 0.01;
+	// Then we set the value in the --vh custom property to the root of the document
+	document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+	// We listen to the resize event
+	window.addEventListener('resize', () => {
+		// We execute the same script as before
+		let vh = window.innerHeight * 0.01;
+		document.documentElement.style.setProperty('--vh', `${vh}px`);
+	});
+};
+if (document.readyState !== 'loading') {
+	eventHandler();
+} else {
+	document.addEventListener('DOMContentLoaded', eventHandler);
+}
