@@ -55,7 +55,6 @@
   "dependencies": {
     "@fancyapps/fancybox": "^3.5.7",
     "animate.css": "^4.1.0",
-    "bootstrap": "^4.5.0",
     "gijgo": "^1.9.13",
     "gulp-group-css-media-queries": "^1.2.2",
     "inputmask": "^5.0.3",
@@ -66,8 +65,9 @@
     "popper.js": "^1.16.1",
     "slick-carousel": "^1.8.1",
     "svg4everybody": "^2.1.9",
-    "swiper": "^5.4.2",
+    "swiper": "^5.4.5",
     "vue": "^2.6.11",
+    "bootstrap": "^5.0.0-alpha1",
     "wowjs": "^1.1.3"
   }
 }
