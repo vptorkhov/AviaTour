@@ -88,6 +88,12 @@ $output-bourbon-deprecation-warnings: false;
 // scss-docs-end import-stack
 
 
+@import "root";
 @import "base";
 @import '../pug/blocks/**/*.scss';
 @import "media"; // Всегда в конце
+
+
+.row{
+	--bs-gutter-x: 40px;
+}
