@@ -6,6 +6,8 @@ module.exports = function () {
 		$.gulp.watch($.sourse + '/pug/**/*.pug', $.gulp.series('pug'));
 		$.gulp.watch($.sourse + '/svg/*.svg', $.gulp.series('svg'));
 		$.gulp.watch([$.sourse + '/js/*.js'], $.gulp.series('scripts'));
+		$.gulp.watch($.sourse + '/sass/*.svg', $.gulp.series('svgCopy'));
+ 
 		// $.gulp.watch([$.sourse + '/js/common.js'], $.gulp.series('scripts:common'));
 		// $.gulp.watch([$.sourse + '/pug/**/*.js'], $.gulp.series('scripts:app'));
 		// $.gulp.watch($.sourse + '/js/scripts.min.js', $.gulp.series('scripts:lib')); 

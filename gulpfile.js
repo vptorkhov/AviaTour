@@ -6,7 +6,6 @@ global.$ = {
 	gulp: require('gulp'),
 	del: require('del'),
 	babel: require('gulp-babel'),
-	cleanCSS: require('gulp-clean-css'),
 	gulpif: require('gulp-if'),
 	sassGlob: require('gulp-sass-glob'),
 	tabify: require('gulp-tabify'),
@@ -17,8 +16,7 @@ global.$ = {
 	postcss: require('gulp-postcss'),
 	cssnano: require('cssnano'),
 	nested: require('postcss-nested'),
-	pcmq: require('postcss-combine-media-query'),
-	postcssCustomProperties: require('postcss-custom-properties'),
+	plumber: require('gulp-plumber'), 
 	path: {
 		tasks: require('./gulp/config/tasks.js'),
 	},
@@ -33,12 +31,11 @@ $.path.tasks.forEach(function (taskPath) {
 $.gulp.task('img', $.gulp.series('cleanimg', 'img-responsive'));
 $.gulp.task('libs', $.gulp.series('cleanlibs', 'copylibs'));
 
-$.gulp.task('default', $.gulp.series(
+$.gulp.task('default', $.gulp.series('svg', 'svgCopy',
 	// $.gulp.parallel('svg','pug','scripts:lib','scripts','file'),
 	// $.gulp.parallel('file'),
 
-	$.gulp.parallel(
-		'svg',
+	$.gulp.parallel( 
 		'pug',
 		'img',
 		'libs',

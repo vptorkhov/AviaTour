@@ -181,14 +181,6 @@ function eventHandler() {
 
 	heightses();
 
-
-	
-	// var btnTop = document.querySelector('.btn-scroll-top--js');
-	// 	if (btnTop) {
-	// 		btnTop.addEventListener('click', function () {
-	// 			window.scrollTo({ top: 0, behavior:'smooth' })
-	// 		})
-	// 	}
 	// листалка по стр
 	$(" .top-nav li a, .scroll-link").click(function () {
 		const elementClick = $(this).attr("href");

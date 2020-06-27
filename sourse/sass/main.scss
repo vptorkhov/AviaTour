@@ -5,7 +5,7 @@ $output-bourbon-deprecation-warnings: false;
 
 @import "mixin";
 @import "fonts";
-@import "./public/img/svg/_sprite";
+@import "_sprite";
 // @import "bootstrap-theme/bootstrap";
 
 // Option B: Include parts of Bootstrap
@@ -95,5 +95,15 @@ $output-bourbon-deprecation-warnings: false;
 
 
 .row{
-	--bs-gutter-x: 40px;
+	// --bs-gutter-x: 40px;
+}
+
+
+.block{
+	width: 50px;
+	height: 100px;
+	background: url(../img/svg/sprite.svg#check);
+	background-size: 100px 100px;
+	background-repeat: no-repeat;
+	// background-size: contain;
 }
