@@ -54,25 +54,23 @@
 
 
 @mixin roww($a) {
-  margin-left: rem(-$a);
-  margin-right: rem(-$a);
+  --bs-gutter-x: #{$a};
+
+  margin-left: calc(var(--bs-gutter-x)/ -2);
+  margin-right: calc(var(--bs-gutter-x)/ -2);
 
   >* {
-    padding-left: rem($a);
-    padding-right: rem($a);
+    padding-left: calc(var(--bs-gutter-x)/2);
+    padding-right: calc(var(--bs-gutter-x)/2);
   }
 }
 
 @mixin center($w) {
   margin-left: auto;
   margin-right: auto;
-  max-width: #{$w}px;
+  max-width: $w;
 }
-
-// color в rgba
-@mixin rgba($c, $a) {
-  background-color: rgba($color:$c, $alpha: $a);
-}
+ 
 
 @mixin bgs($w: center, $h: center) {
   background-size: cover;
@@ -111,67 +109,6 @@
 @mixin mt($s: .36) {
   transition: all #{$s}s;
 }
-
-@mixin c-white {
-  color: #fff;
-}
-
-@mixin c-dark {
-  color: #000;
-}
-
-
-@mixin fontello($icon, $fz) {
-  content: $icon;
-  font-family: "fontello";
-  font-style: normal;
-  font-weight: normal;
-  font-size: $fz;
-}
-
-@mixin awe($icon, $fz) {
-  content: $icon;
-  font-family: 'FontAwesome';
-  font-style: normal;
-  font-weight: normal;
-  font-size: $fz;
-}
-
-@mixin fab($icon) {
-  content: $icon;
-  font-family: 'Font Awesome 5 Brands';
-  font-style: normal;
-  font-weight: normal;
-
-}
-
-@mixin far($icon) {
-  content: $icon;
-  font-family: 'Font Awesome 5 Pro';
-  font-style: normal;
-  font-weight: normal;
-
-}
-
-@mixin fas($icon) {
-  content: $icon;
-  font-family: 'Font Awesome 5 Pro';
-  font-style: normal;
-  // font-weight: normal;
-  font-weight: 900;
-
-}
-
-@mixin fal($icon) {
-  content: $icon;
-  font-family: 'Font Awesome 5 Pro';
-  font-style: normal;
-  // font-weight: normal;
-  font-weight: 300;
-
-}
-
-
 
 // михин многоточия
 @mixin ellips {
@@ -212,8 +149,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  width: #{$w}px;
-  height: #{$w}px;
+  width: $w;
+  height: $w;
 }
 
 // для анимации
@@ -221,36 +158,5 @@
 
   @keyframes #{$name} {
     @content;
-  }
-}
-
-// for BEM
-@mixin elem($name) {
-  @at-root #{&}__#{$name} {
-    @content;
-  }
-}
-
-@mixin mod($name) {
-  @at-root #{&}-#{$name} {
-    @content;
-  }
-}
-
-// .block {
-//   color: red;
-//
-//   @include element(element) {
-//     color: green;
-//
-//     @include modifier(modifier) {
-//       color: blue;
-//     }
-//   }
-// }
-
-@mixin padding($values...) {
-  @each $var in $values {
-    padding: #{$var};
   }
 }
