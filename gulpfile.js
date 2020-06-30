@@ -14,6 +14,7 @@ global.$ = {
 	gp: require('gulp-load-plugins')(),
 	browserSync: require('browser-sync').create(),
 	postcss: require('gulp-postcss'),
+	autoprefixer: require('autoprefixer'),
 	cssnano: require('cssnano'),
 	nested: require('postcss-nested'),
 	plumber: require('gulp-plumber'), 

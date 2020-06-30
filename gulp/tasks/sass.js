@@ -3,9 +3,9 @@ module.exports = () => {
 		var processors = [
 			// $.pcmq,
 			// $.postcssCustomProperties,
-			$.gp.autoprefixer,
-			$.cssnano,
-			$.nested,
+			$.autoprefixer(),
+			$.cssnano(),
+			$.nested(),
 		];
 		return $.gulp.src($.sourse + '/sass/main.scss')
 			.pipe($.sassGlob())
