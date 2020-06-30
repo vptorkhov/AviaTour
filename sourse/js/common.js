@@ -73,13 +73,13 @@ const JSCCommon = {
 		if (_this.menuMobileLink) {
 
 			_this.toggleMenu();
-			_this.menuMobileLink.forEach(function (element) {
-				element.addEventListener('click', function (e) {
-					console.log(element);
-					_this.closeMenu();
+			// _this.menuMobileLink.forEach(function (element) {
+			// 	element.addEventListener('click', function (e) {
+			// 		console.log(element);
+			// 		_this.closeMenu();
 
-				});
-			})
+			// 	});
+			// })
 			document.addEventListener('mouseup', function (event) {
 				let container = event.target.closest(".menu-mobile--js.active"); // (1)
 				if (!container) {
@@ -110,14 +110,7 @@ const JSCCommon = {
 
 };
 
-function eventHandler() {
-	// полифил для object-fit
-	objectFitImages();
-	// Picture element HTML5 shiv
-	document.createElement("picture");
-	// для свг
-	svg4everybody({});
-
+function eventHandler() { 
 	JSCCommon.modalCall();
 
 	JSCCommon.tabscostume('tabs');
@@ -151,30 +144,26 @@ function eventHandler() {
 	// /закрыть/открыть мобильное меню
 
 	function heightses() {
-
-		const w = $(window).width();
-
-		// $(".main-wrapper").css("margin-bottom", $('footer').height())
-		// $(".otz__item .text-wrap ").height('auto').equalHeights();
-		// 
+ 
 		// скрывает моб меню
 
-		const topH = $("header ").innerHeight();
-
-		$(window).scroll(function () {
+		const topH = document.querySelector('header').scrollHeight;
+		let stickyElement = document.querySelector('.top-nav')
+		window.onscroll = () => {
 			if ($(window).scrollTop() > topH) {
-				$('.top-nav  ').addClass('fixed');
+
+				stickyElement.classList.add('fixed');
 			} else {
-				$('.top-nav  ').removeClass('fixed');
+				stickyElement.classList.remove('fixed'); 
 			}
-		});
+		};
 		// конец добавил
 		if (window.matchMedia("(min-width: 992px)").matches) {
 			JSCCommon.closeMenu();
 		}
 	}
 
-	$(window).resize(function () {
+	window.addEventListener('resize', () => {
 		heightses();
 
 	});

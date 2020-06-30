@@ -78,15 +78,13 @@ var JSCCommon = {
 		var _this = this;
 
 		if (_this.menuMobileLink) {
-			_this.toggleMenu();
+			_this.toggleMenu(); // _this.menuMobileLink.forEach(function (element) {
+			// 	element.addEventListener('click', function (e) {
+			// 		console.log(element);
+			// 		_this.closeMenu();
+			// 	});
+			// })
 
-			_this.menuMobileLink.forEach(function (element) {
-				element.addEventListener('click', function (e) {
-					console.log(element);
-
-					_this.closeMenu();
-				});
-			});
 
 			document.addEventListener('mouseup', function (event) {
 				var container = event.target.closest(".menu-mobile--js.active"); // (1)
@@ -115,12 +113,6 @@ var JSCCommon = {
 function eventHandler() {
 	var _objectSpread2;
 
-	// полифил для object-fit
-	objectFitImages(); // Picture element HTML5 shiv
-
-	document.createElement("picture"); // для свг
-
-	svg4everybody({});
 	JSCCommon.modalCall();
 	JSCCommon.tabscostume('tabs');
 	JSCCommon.mobileMenu();
@@ -142,26 +134,25 @@ function eventHandler() {
 	// /закрыть/открыть мобильное меню
 
 	function heightses() {
-		var w = $(window).width(); // $(".main-wrapper").css("margin-bottom", $('footer').height())
-		// $(".otz__item .text-wrap ").height('auto').equalHeights();
-		// 
 		// скрывает моб меню
+		var topH = document.querySelector('header').scrollHeight;
+		var stickyElement = document.querySelector('.top-nav');
 
-		var topH = $("header ").innerHeight();
-		$(window).scroll(function () {
+		window.onscroll = function () {
 			if ($(window).scrollTop() > topH) {
-				$('.top-nav  ').addClass('fixed');
+				stickyElement.classList.add('fixed');
 			} else {
-				$('.top-nav  ').removeClass('fixed');
+				stickyElement.classList.remove('fixed');
 			}
-		}); // конец добавил
+		}; // конец добавил
+
 
 		if (window.matchMedia("(min-width: 992px)").matches) {
 			JSCCommon.closeMenu();
 		}
 	}
 
-	$(window).resize(function () {
+	window.addEventListener('resize', function () {
 		heightses();
 	});
 	heightses(); // листалка по стр
