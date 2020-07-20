@@ -100,7 +100,7 @@ const JSCCommon = {
 					_this.closeMenu();
 
 				}
-			});
+			}, { passive: true });
 		}
 	},
 	// /mobileMenu
@@ -221,19 +221,7 @@ function eventHandler() {
 	});
 	// modal window
 
-	var gets = (function () {
-		var a = window.location.search;
-		var b = new Object();
-		var c;
-		a = a.substring(1).split("&");
-		for (var i = 0; i < a.length; i++) {
-			c = a[i].split("=");
-			b[c[0]] = c[1];
-		}
-		return b;
-	})();
-	// form
-
+ 
 
 	var gets = (function () {
 		var a = window.location.search;
@@ -294,7 +282,7 @@ function eventHandler() {
 		// We execute the same script as before
 		let vh = window.innerHeight * 0.01;
 		document.documentElement.style.setProperty('--vh', `${vh}px`);
-	});
+	}, { passive: true });
 };
 if (document.readyState !== 'loading') {
 	eventHandler();
