@@ -1,5 +1,5 @@
 :root {
-
+	--animate-delay: 1.2s;
 	--fontSizeBase: #{$em-base};
 	@include media-breakpoint-up(md) {
 
@@ -15,8 +15,8 @@
 
 		--swiperArrowSize: #{rem(68)};
 		--swiperArrowPosition: calc(-1 * var(--swiperArrowSize) / 2);
-		--swiperBorderColorDef: #{$primary};
-		--swiperColorDef: #{$primary};
+		--swiperBorderColorDef: var(--bs-primary);
+		--swiperColorDef: var(--bs-primary);
 		--swiperBgDef: #ffffff;
 	
 }

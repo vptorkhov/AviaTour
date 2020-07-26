@@ -101,8 +101,9 @@
 				</div>
 			</footer>
 		</div>
-		<div class="d-none">
-			<div class="form-wrap modal-win modal-form" id="modal-call">
+		<!--  start modals-->
+		<div class="modal-win" id="modal-call" style="display: none">
+			<div class="form-wrap">
 				<form>
 					<input type="hidden" name="example-input-field"/>
 					<input class="order" type="hidden" name="order" value="Заявка  с сайта"/>
@@ -118,18 +119,17 @@
 					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="text" placeholder="Ваше Имя" name="text" required="required"/> 
 					</div>
 					<!-- +e.input-wrap-->
-					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="tel" placeholder="Ваш телефон" name="tel" required="required"/>
-					</div>
-					<!-- +e.input-wrap--><input class="form-wrap__btn" type="submit" value="Рассчитать"/>
+					<button class="form-wrap__btn" type="submit" value="Рассчитать"> 
+					</button>
 					<div class="form-wrap__polite">
 						<label class="custom-input"><input class="custom-input__input" type="checkbox" name="checkbox" checked="checked"/><span class="custom-input__lab"></span><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>
 						</label>
 					</div>
 				</form>
 			</div>
-			<!-- #modal-call-->
 		</div>
-		<!-- modal-->
+		<!-- #modal-call-->
+		<!-- end modals-->
 		<script src="js/lazy.js"></script>
 		<script src="libs/jquery/jquery.min.js"></script>
 		<!-- modal libs-->
