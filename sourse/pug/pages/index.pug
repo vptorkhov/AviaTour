@@ -2,21 +2,39 @@ extends layout/main.pug
 
 
 include ../blocks/sContent/_sContent.pug
-include ../blocks/sContact/_sContact.pug 
+include ../blocks/sContact/_sContact.pug
 
 block variables
 	- let  mainPage= null
 block title
 	- let  title= 'title'
 	title= title
-block pagecontent 
+block pagecontent
 	//- +mob-mnu()
 	+header()
 
 		+top-nav()
-		+topLine()  
+		+topLine()
+	.container
+		+b.tabs
+			+e.caption
+				+e.btn.btn.btn-primary.active btn 1
+				+e.btn.btn.btn-primary btn 2
+				+e.btn.btn.btn-primary btn 3
+			div
+				+e.content.active  content 1
+				+e.content content 2
+				+e.content content 3
+		+b.tabs
+			+e.caption
+				+e.btn.btn.btn-primary.active btn 1
+				+e.btn.btn.btn-primary btn 2
+				+e.btn.btn.btn-primary btn 3
+			div
+				+e.content.active  content 1
+				+e.content content 2
+				+e.content content 3
 	+headerBlock()
 	+sForm()
 	+sContact()
 	+footer()
-	
