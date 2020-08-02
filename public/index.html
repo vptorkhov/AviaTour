@@ -25,6 +25,36 @@
 	</head>
 	<body><!--[if lt IE 11]><p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p><![endif]-->
 		<div class="main-wrapper">
+			<div class="toggle-menu-mobile toggle-menu-mobile--js d-lg-none"><span></span>
+			</div>
+			<div class="menu-mobile menu-mobile--js d-lg-none">
+				<div class="toggle-menu-mobile toggle-menu-mobile--js"><span></span>
+				</div>
+				<div class="menu-mobile__inner">
+					<ul class="menu-mobile__nav" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="/" itemprop="url">Главная</a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url">Услуги  </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url">Подбор септика   </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url">Акции </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url"> О компании  </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url"> Доставка и оплата </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url"> Клиентам  </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#" itemprop="url"> Наши работы   </a>
+						</li>
+						<li class="menu-mobile__item" itemprop="item"><a class="menu-mobile__link" href="#sContact" itemprop="url">Контакты </a>
+						</li>
+					</ul>
+					<div class="text-right"></div>
+				</div>
+			</div>
+			<!--  мобильное меню-->
 			<!-- start header-->
 			<header class="header" id="header">
 				<!-- start top-nav-->
@@ -65,7 +95,7 @@
 				<!-- end topLine-->
 			</header>
 			<!-- end header-->
-			<div class="container">
+			<div class="container"><a class="link-modal" href="#modal-call" data-title="title" data-text="text  sadasdasd" data-btn="btn sdasdsa" data-order="order  ddfs">modal-call</a><a class="link-modal" href="#modal-call" data-title="title  111" data-text="text  sadasdasd" data-btn="btn sdasdsa" data-order="order  ddfs">modal-call</a>
 				<div class="tabs">
 					<div class="tabs__caption">
 						<div class="tabs__btn btn btn-primary active">btn 1
@@ -152,12 +182,12 @@
 					<div class="text-center">
 						<div class="form-wrap__title h3 ttu">Обратный звонок
 						</div>
-						<p>Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут</p>
+						<p class="after-headline">Заполните заявку и&nbsp;мы&nbsp;с&nbsp;Вами свяжемся в&nbsp;течение 15&nbsp;минут</p>
 					</div>
 					<div class="form-wrap__input-wrap form-group"><input class="form-wrap__input form-control" type="text" placeholder="Ваше Имя" name="text" required="required"/> 
 					</div>
 					<!-- +e.input-wrap-->
-					<button class="form-wrap__btn" type="submit" value="Рассчитать"> 
+					<button class="form-wrap__btn btn" type="submit"> 
 					</button>
 					<div class="form-wrap__polite">
 						<label class="custom-input"><input class="custom-input__input" type="checkbox" name="checkbox" checked="checked"/><span class="custom-input__lab"></span><small class="custom-input__text text-secondary">Согласен на обработку и хранение моих персональных данных в соответствии с условиями</small>

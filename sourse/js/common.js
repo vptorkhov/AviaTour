@@ -3,9 +3,9 @@ const JSCCommon = {
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
-	body: document.querySelector("body"),
 
 	modalCall() {
+
 		$(".link-modal").fancybox({
 			arrows: false,
 			infobar: false,
@@ -31,32 +31,39 @@ const JSCCommon = {
 			$.fancybox.close();
 		})
 		$.fancybox.defaults.backFocus = false;
-		$(".link-modal").click(function () {
-			let th = $(this);
-			let modal = $(th.attr('href'));
-			let content = {
-				title: th.data('title'),
-				text: th.data('text'),
-				btn: th.data('btn'),
-				order: th.data('order')
-			}
-			modal.find('.ttu').html(content.title);
-			modal.find('.after-headline').html(content.text);
-			modal.find('.btn').val(content.btn);
-			modal.find('.order').val(content.order);
-		})
+		const linkModal = document.querySelectorAll('.link-modal');
+		function addData() {
+			linkModal.forEach(element => {
+				element.addEventListener('click', () => {
+					let modal = document.querySelector(element.getAttribute("href"));
+					const data = element.dataset;
+
+					function setValue(val, elem) {
+						if (elem && val) {
+							const el = modal.querySelector(elem)
+							el.tagName == "INPUT"
+								? el.value = val
+								: el.innerHTML = val;
+							// console.log(modal.querySelector(elem).tagName)
+						}
+					}
+					setValue(data.title, '.ttu');
+					setValue(data.text, '.after-headline');
+					setValue(data.btn, '.btn');
+					setValue(data.order, '.order');
+				})
+			})
+		}
+		if (linkModal) addData();
 	},
-	// /magnificPopupCall
+	// /modalCall
 	toggleMenu() {
-		let _this = this;
-		if (_this.btnToggleMenuMobile) {
-			_this.btnToggleMenuMobile.forEach(function (element) {
-				element.addEventListener('click', function () {
-					_this.btnToggleMenuMobile.forEach(function (element) {
-						element.classList.toggle("on");
-					});
-					_this.menuMobile.classList.toggle("active");
-					_this.body.classList.toggle("fixed");
+		if (this.btnToggleMenuMobile) {
+			this.btnToggleMenuMobile.forEach(element => {
+				element.addEventListener('click', () => {
+					this.btnToggleMenuMobile.forEach(element => element.classList.toggle("on"));
+					this.menuMobile.classList.toggle("active");
+					document.body.classList.toggle("fixed");
 					return false;
 				});
 			});
@@ -64,26 +71,28 @@ const JSCCommon = {
 	},
 
 	closeMenu() {
-		let _this = this;
-		if (_this.menuMobile) {
-			_this.btnToggleMenuMobile.forEach(function (element) {
+		if (this.menuMobile) {
+			this.btnToggleMenuMobile.forEach(element => {
 				element.classList.remove("on");
 			});
-			_this.menuMobile.classList.remove("active");
-			_this.body.classList.remove("fixed");
+			this.menuMobile.classList.remove("active");
+			document.body.classList.remove("fixed");
 		}
 
 	},
-
 	mobileMenu() {
-		// закрыть/открыть мобильное меню
-		let _this = this;
-		if (_this.menuMobileLink) {
-			_this.toggleMenu();
-			document.addEventListener('mouseup', function (event) {
+		if (this.menuMobileLink) {
+			this.toggleMenu();
+			document.addEventListener('mouseup', (event) => {
 				let container = event.target.closest(".menu-mobile--js.active"); // (1)
 				if (!container) {
-					_this.closeMenu();
+					this.closeMenu();
+				}
+			}, { passive: true });
+
+			window.addEventListener('resize', () => {
+				if (window.matchMedia("(min-width: 992px)").matches) {
+					JSCCommon.closeMenu();
 				}
 			}, { passive: true });
 		}
@@ -98,18 +107,16 @@ const JSCCommon = {
 			BtnParent: [].slice.call(document.querySelectorAll(`.${tab}__caption`)),
 			Content: [].slice.call(document.querySelectorAll(`.${tab}__content`)),
 		}
-		tabs.Btn.forEach(function (element, index) {
-			element.addEventListener('click', function () {
-				let _this = this;
-				if (!_this.classList.contains('active')) {
-					let siblings = _this.parentNode.querySelector(`.${tab}__btn.active`);
+		tabs.Btn.forEach((element, index) => {
+			element.addEventListener('click', () => {
+				if (!element.classList.contains('active')) {
+					let siblings = element.parentNode.querySelector(`.${tab}__btn.active`);
 					let siblingsContent = tabs.Content[index].parentNode.querySelector(`.${tab}__content.active`);
 					siblings.classList.remove('active');
 					siblingsContent.classList.remove('active')
-					_this.classList.add('active');
+					element.classList.add('active');
 					tabs.Content[index].classList.add('active');
-				}
-
+				} 
 			})
 		})
 		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
@@ -135,7 +142,7 @@ const JSCCommon = {
 	ifie() {
 		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 		if (isIE11) {
-			$("body").prepend(`<p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p>`)
+			$("body").prepend('<p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p>')
 
 		}
 	},
@@ -211,9 +218,9 @@ const JSCCommon = {
 const $ = jQuery;
 
 function eventHandler() {
-	JSCCommon.modalCall(); 
-	JSCCommon.tabscostume('tabs'); 
-	JSCCommon.mobileMenu(); 
+	JSCCommon.modalCall();
+	JSCCommon.tabscostume('tabs');
+	JSCCommon.mobileMenu();
 	JSCCommon.inputMask();
 	JSCCommon.ifie();
 	JSCCommon.sendForm();
@@ -222,14 +229,15 @@ function eventHandler() {
 
 	// JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
-	let screenName = 'main.jpg';
+	let screenName;
+	screenName = 'main.jpg';
 	screenName
 		? $(".main-wrapper").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`)
 		: '';
 	// /добавляет подложку для pixel perfect
 
 
-	function heightses() {
+	function whenResize() {
 
 		const topH = document.querySelector('header').scrollHeight;
 		let stickyElement = document.querySelector('.top-nav')
@@ -241,18 +249,15 @@ function eventHandler() {
 				stickyElement.classList.remove('fixed');
 			}
 		};
-		// скрывает моб меню 
-		if (window.matchMedia("(min-width: 992px)").matches) {
-			JSCCommon.closeMenu();
-		}
+
 	}
 
 	window.addEventListener('resize', () => {
-		heightses();
+		whenResize();
 
 	}, { passive: true });
 
-	heightses();
+	whenResize();
 
 
 	let defaultSl = {
@@ -277,7 +282,7 @@ function eventHandler() {
 		},
 	}
 
-	const swiper4 = new Swiper('.color-slider', {
+	const swiper4 = new Swiper('.sBanners__slider--js', {
 		// slidesPerView: 5,
 		...defaultSl,
 		slidesPerView: 'auto',

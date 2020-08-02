@@ -11,7 +11,6 @@ var JSCCommon = {
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
-	body: document.querySelector("body"),
 	modalCall: function modalCall() {
 		$(".link-modal").fancybox({
 			arrows: false,
@@ -38,66 +37,75 @@ var JSCCommon = {
 			$.fancybox.close();
 		});
 		$.fancybox.defaults.backFocus = false;
-		$(".link-modal").click(function () {
-			var th = $(this);
-			var modal = $(th.attr('href'));
-			var content = {
-				title: th.data('title'),
-				text: th.data('text'),
-				btn: th.data('btn'),
-				order: th.data('order')
-			};
-			modal.find('.ttu').html(content.title);
-			modal.find('.after-headline').html(content.text);
-			modal.find('.btn').val(content.btn);
-			modal.find('.order').val(content.order);
-		});
+		var linkModal = document.querySelectorAll('.link-modal');
+
+		if (linkModal) {
+			linkModal.forEach(function (element) {
+				element.addEventListener('click', function () {
+					var modal = document.querySelector(element.getAttribute("href"));
+					var data = element.dataset;
+
+					function setValue(val, elem) {
+						if (elem && val) {
+							var el = modal.querySelector(elem);
+							el.tagName == "INPUT" ? el.value = val : el.innerHTML = val;
+							console.log(modal.querySelector(elem).tagName);
+						}
+					}
+
+					setValue(data.title, '.ttu');
+					setValue(data.text, '.after-headline');
+					setValue(data.btn, '.btn');
+					setValue(data.order, '.order');
+				});
+			});
+		}
 	},
-	// /magnificPopupCall
+	// /modalCall
 	toggleMenu: function toggleMenu() {
 		var _this = this;
 
-		if (_this.btnToggleMenuMobile) {
-			_this.btnToggleMenuMobile.forEach(function (element) {
+		if (this.btnToggleMenuMobile) {
+			this.btnToggleMenuMobile.forEach(function (element) {
 				element.addEventListener('click', function () {
 					_this.btnToggleMenuMobile.forEach(function (element) {
-						element.classList.toggle("on");
+						return element.classList.toggle("on");
 					});
 
 					_this.menuMobile.classList.toggle("active");
 
-					_this.body.classList.toggle("fixed");
-
+					document.body.classList.toggle("fixed");
 					return false;
 				});
 			});
 		}
 	},
 	closeMenu: function closeMenu() {
-		var _this = this;
-
-		if (_this.menuMobile) {
-			_this.btnToggleMenuMobile.forEach(function (element) {
+		if (this.menuMobile) {
+			this.btnToggleMenuMobile.forEach(function (element) {
 				element.classList.remove("on");
 			});
-
-			_this.menuMobile.classList.remove("active");
-
-			_this.body.classList.remove("fixed");
+			this.menuMobile.classList.remove("active");
+			document.body.classList.remove("fixed");
 		}
 	},
 	mobileMenu: function mobileMenu() {
-		// закрыть/открыть мобильное меню
-		var _this = this;
+		var _this2 = this;
 
-		if (_this.menuMobileLink) {
-			_this.toggleMenu();
-
+		if (this.menuMobileLink) {
+			this.toggleMenu();
 			document.addEventListener('mouseup', function (event) {
 				var container = event.target.closest(".menu-mobile--js.active"); // (1)
 
 				if (!container) {
-					_this.closeMenu();
+					_this2.closeMenu();
+				}
+			}, {
+				passive: true
+			});
+			window.addEventListener('resize', function () {
+				if (window.matchMedia("(min-width: 992px)").matches) {
+					JSCCommon.closeMenu();
 				}
 			}, {
 				passive: true
@@ -114,17 +122,12 @@ var JSCCommon = {
 		};
 		tabs.Btn.forEach(function (element, index) {
 			element.addEventListener('click', function () {
-				var _this = this;
-
-				if (!_this.classList.contains('active')) {
-					var siblings = _this.parentNode.querySelector(".".concat(tab, "__btn.active"));
-
+				if (!element.classList.contains('active')) {
+					var siblings = element.parentNode.querySelector(".".concat(tab, "__btn.active"));
 					var siblingsContent = tabs.Content[index].parentNode.querySelector(".".concat(tab, "__content.active"));
 					siblings.classList.remove('active');
 					siblingsContent.classList.remove('active');
-
-					_this.classList.add('active');
-
+					element.classList.add('active');
 					tabs.Content[index].classList.add('active');
 				}
 			});
@@ -149,7 +152,7 @@ var JSCCommon = {
 		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
 		if (isIE11) {
-			$("body").prepend("<p   class=\"browsehappy container\">\u041A \u0441\u043E\u0436\u0430\u043B\u0435\u043D\u0438\u044E, \u0432\u044B \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442\u0435 \u0443\u0441\u0442\u0430\u0440\u0435\u0432\u0448\u0438\u0439 \u0431\u0440\u0430\u0443\u0437\u0435\u0440. \u041F\u043E\u0436\u0430\u043B\u0443\u0439\u0441\u0442\u0430, <a href=\"http://browsehappy.com/\" target=\"_blank\">\u043E\u0431\u043D\u043E\u0432\u0438\u0442\u0435 \u0432\u0430\u0448 \u0431\u0440\u0430\u0443\u0437\u0435\u0440</a>, \u0447\u0442\u043E\u0431\u044B \u0443\u043B\u0443\u0447\u0448\u0438\u0442\u044C \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0441\u0442\u044C, \u043A\u0430\u0447\u0435\u0441\u0442\u0432\u043E \u043E\u0442\u043E\u0431\u0440\u0430\u0436\u0430\u0435\u043C\u043E\u0433\u043E \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\u0430 \u0438 \u043F\u043E\u0432\u044B\u0441\u0438\u0442\u044C \u0431\u0435\u0437\u043E\u043F\u0430\u0441\u043D\u043E\u0441\u0442\u044C.</p>");
+			$("body").prepend('<p   class="browsehappy container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p>');
 		}
 	},
 	sendForm: function sendForm() {
@@ -240,7 +243,7 @@ function eventHandler() {
 	var screenName = 'main.jpg';
 	screenName ? $(".main-wrapper").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>")) : ''; // /добавляет подложку для pixel perfect
 
-	function heightses() {
+	function whenResize() {
 		var topH = document.querySelector('header').scrollHeight;
 		var stickyElement = document.querySelector('.top-nav');
 
@@ -250,20 +253,15 @@ function eventHandler() {
 			} else {
 				stickyElement.classList.remove('fixed');
 			}
-		}; // скрывает моб меню 
-
-
-		if (window.matchMedia("(min-width: 992px)").matches) {
-			JSCCommon.closeMenu();
-		}
+		};
 	}
 
 	window.addEventListener('resize', function () {
-		heightses();
+		whenResize();
 	}, {
 		passive: true
 	});
-	heightses();
+	whenResize();
 	var defaultSl = (_defaultSl = {
 		spaceBetween: 0,
 		lazy: {
