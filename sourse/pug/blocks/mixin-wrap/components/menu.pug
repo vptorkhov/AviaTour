@@ -30,13 +30,14 @@ mixin mnu()
 			"Главная":"/",
 			"Услуги  ":"#",
 			"Подбор септика   ":"#",
-			"Акции ":"#"," О компании  ":"#",
+			"Акции ":"#",
+			" О компании  ":"#",
 			" Доставка и оплата ":"#",
 			" Клиентам  ":"#",
 			" Наши работы   ":"#",
 			"Контакты ":"#sContact"
 			}
-	+e.UL.nav(itemscope itemtype="http://schema.org/SiteNavigationElement")
+	+b.UL.navMenu(itemscope itemtype="http://schema.org/SiteNavigationElement")
 		each linkPatch, linkName in nav
 			+e.LI.item( itemprop="item" ): +e.A.link(href= linkPatch  itemprop="url")= linkName
 //- /menu

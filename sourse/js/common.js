@@ -229,26 +229,17 @@ function eventHandler() {
 
 	// JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
+	var x = window.location.host;
 	let screenName;
 	screenName = 'main.jpg';
-	screenName
-		? $(".main-wrapper").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`)
-		: '';
+	if (screenName && x === "localhost:3000") {
+		$(".main-wrapper").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
+	}
 	// /добавляет подложку для pixel perfect
 
 
 	function whenResize() {
-
-		const topH = document.querySelector('header').scrollHeight;
-		let stickyElement = document.querySelector('.top-nav')
-		window.onscroll = () => {
-			if ($(window).scrollTop() > topH) {
-
-				stickyElement.classList.add('fixed');
-			} else {
-				stickyElement.classList.remove('fixed');
-			}
-		};
+ 
 
 	}
 

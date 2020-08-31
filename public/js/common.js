@@ -39,7 +39,7 @@ var JSCCommon = {
 		$.fancybox.defaults.backFocus = false;
 		var linkModal = document.querySelectorAll('.link-modal');
 
-		if (linkModal) {
+		function addData() {
 			linkModal.forEach(function (element) {
 				element.addEventListener('click', function () {
 					var modal = document.querySelector(element.getAttribute("href"));
@@ -48,8 +48,7 @@ var JSCCommon = {
 					function setValue(val, elem) {
 						if (elem && val) {
 							var el = modal.querySelector(elem);
-							el.tagName == "INPUT" ? el.value = val : el.innerHTML = val;
-							console.log(modal.querySelector(elem).tagName);
+							el.tagName == "INPUT" ? el.value = val : el.innerHTML = val; // console.log(modal.querySelector(elem).tagName)
 						}
 					}
 
@@ -60,6 +59,8 @@ var JSCCommon = {
 				});
 			});
 		}
+
+		if (linkModal) addData();
 	},
 	// /modalCall
 	toggleMenu: function toggleMenu() {
@@ -240,21 +241,16 @@ function eventHandler() {
 	JSCCommon.animateScroll(); // JSCCommon.CustomInputFile();
 	// добавляет подложку для pixel perfect
 
-	var screenName = 'main.jpg';
-	screenName ? $(".main-wrapper").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>")) : ''; // /добавляет подложку для pixel perfect
+	var x = window.location.host;
+	var screenName;
+	screenName = 'main.jpg';
 
-	function whenResize() {
-		var topH = document.querySelector('header').scrollHeight;
-		var stickyElement = document.querySelector('.top-nav');
+	if (screenName && x === "localhost:3000") {
+		$(".main-wrapper").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
+	} // /добавляет подложку для pixel perfect
 
-		window.onscroll = function () {
-			if ($(window).scrollTop() > topH) {
-				stickyElement.classList.add('fixed');
-			} else {
-				stickyElement.classList.remove('fixed');
-			}
-		};
-	}
+
+	function whenResize() {}
 
 	window.addEventListener('resize', function () {
 		whenResize();
@@ -279,7 +275,7 @@ function eventHandler() {
 		// }
 
 	}), _defaultSl);
-	var swiper4 = new Swiper('.color-slider', _objectSpread(_objectSpread({}, defaultSl), {}, {
+	var swiper4 = new Swiper('.sBanners__slider--js', _objectSpread(_objectSpread({}, defaultSl), {}, {
 		slidesPerView: 'auto',
 		freeMode: true,
 		loopFillGroupWithBlank: true,
