@@ -213,7 +213,12 @@ const JSCCommon = {
 
 			return false;
 		});
-	}
+	},
+	getCurrentYear(el) {
+		let now = new Date();
+		let currentYear = document.querySelector(el);
+		if (currentYear) currentYear.innerText = now.getFullYear(); 
+		}
 };
 const $ = jQuery;
 
@@ -286,6 +291,7 @@ function eventHandler() {
 	});
 	// modal window
 
+	
 };
 if (document.readyState !== 'loading') {
 	eventHandler();
