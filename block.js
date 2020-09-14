@@ -32,38 +32,27 @@ const fileSources = {
 	@include media-breakpoint-up(lg) {}
 	@include media-breakpoint-up(md) {}
 	@include media-breakpoint-up(sm) {}
-	
 	//
 	@include media-breakpoint-between(md, xl) { }
-	
-	
 	//
-	@include media-breakpoint-only(sm) {}
-	@include media-breakpoint-only(md) {}
-	@include media-breakpoint-only(lg) {}
 	@include media-breakpoint-only(xl) {}
-	
 	//
 	@include media-breakpoint-down(xl) {}
-	@include media-breakpoint-down(lg) {}
-	@include media-breakpoint-down(md) {}
-	@include media-breakpoint-down(sm) {}
-
 } // end.{blockName}`
 	,
-	js: `let {blockName}Vue = new Vue({
-		el: '#{blockName}',
-		data: {
-			imgSRc: 'img/',
-		},
-		methods: { 
-		},
-		 created: function () { 
-		},
-		computed: {
+	// js: `let {blockName}Vue = new Vue({
+	// 	el: '#{blockName}',
+	// 	data: {
+	// 		imgSRc: 'img/',
+	// 	},
+	// 	methods: { 
+	// 	},
+	// 	 created: function () { 
+	// 	},
+	// 	computed: {
 		
-		},
-	})`
+	// 	},
+	// })`
 };
 
 function validateBlockName(blockName) {

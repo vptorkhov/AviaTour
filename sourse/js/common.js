@@ -64,6 +64,7 @@ const JSCCommon = {
 					this.btnToggleMenuMobile.forEach(element => element.classList.toggle("on"));
 					this.menuMobile.classList.toggle("active");
 					document.body.classList.toggle("fixed");
+					document.querySelector('html').classList.toggle("fixed");
 					return false;
 				});
 			});
@@ -77,6 +78,7 @@ const JSCCommon = {
 			});
 			this.menuMobile.classList.remove("active");
 			document.body.classList.remove("fixed");
+			document.querySelector('html').classList.remove("fixed");
 		}
 
 	},
@@ -119,13 +121,13 @@ const JSCCommon = {
 				} 
 			})
 		})
-		$('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
-			$(this)
-				.addClass('active').siblings().removeClass('active')
-				.closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active')
-				.eq($(this).index()).fadeIn().addClass('active');
+		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
+		// 	$(this)
+		// 		.addClass('active').siblings().removeClass('active')
+		// 		.closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active')
+		// 		.eq($(this).index()).fadeIn().addClass('active');
 
-		});
+		// });
 
 	},
 	// /табы
