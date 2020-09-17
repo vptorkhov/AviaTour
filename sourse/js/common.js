@@ -240,7 +240,7 @@ function eventHandler() {
 	let screenName;
 	screenName = 'main.jpg';
 	if (screenName && x === "localhost:3000") {
-		$(".main-wrapper").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
+		$(".footer").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
 	}
 	// /добавляет подложку для pixel perfect
 

@@ -76,6 +76,7 @@ var JSCCommon = {
 					_this.menuMobile.classList.toggle("active");
 
 					document.body.classList.toggle("fixed");
+					document.querySelector('html').classList.toggle("fixed");
 					return false;
 				});
 			});
@@ -88,6 +89,7 @@ var JSCCommon = {
 			});
 			this.menuMobile.classList.remove("active");
 			document.body.classList.remove("fixed");
+			document.querySelector('html').classList.remove("fixed");
 		}
 	},
 	mobileMenu: function mobileMenu() {
@@ -224,6 +226,11 @@ var JSCCommon = {
 			}, 1100);
 			return false;
 		});
+	},
+	getCurrentYear: function getCurrentYear(el) {
+		var now = new Date();
+		var currentYear = document.querySelector(el);
+		if (currentYear) currentYear.innerText = now.getFullYear();
 	}
 };
 var $ = jQuery;
@@ -246,7 +253,7 @@ function eventHandler() {
 	screenName = 'main.jpg';
 
 	if (screenName && x === "localhost:3000") {
-		$(".main-wrapper").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
+		$(".footer").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
 	} // /добавляет подложку для pixel perfect
 
 

@@ -43,6 +43,7 @@ html {
 body {
 	min-width: 320px;
 	position: relative;
+	width: 100%;
 
 	&::before {
 		content: '';
@@ -283,6 +284,7 @@ input::-webkit-inner-spin-button {
 	border-radius: 50%;
 	background-color: var(--swiperBgDef);
 	border: 2px solid var(--swiperBorderColorDef);
+	color: var(--swiperColorDef);
 	@include bgs;
 	z-index: 300;
 	outline: none !important;
@@ -290,15 +292,13 @@ input::-webkit-inner-spin-button {
 	background-image: none;
 	margin: 0;
 	@include a-cent(y);
-	color: var(--swiperColorDef);
-	box-shadow: 0 15px 60px rgba(0, 0, 0, 0.1);
-	margin-top: calc(-1 * var(--swiperArrowSize) * 0.4);
+	box-shadow: 0 15px 60px rgba(0, 0, 0, 0.1); 
 	@include mt;
 
 	&:hover {
-		background-color: $primary;
-		border-color: $primary;
-		color: var(--swiperBgDef);
+		background-color: var(--swiperBgDefHover);
+		border-color: var(--swiperBorderColorDefHover);
+		color: var(--swiperColorDefHover);
 	}
 
 	.icon {
@@ -377,8 +377,7 @@ picture {
 img.img-bg,
 .object-fit-js img {
 	object-fit: cover;
-	object-position: top;
-	font-family: 'object-fit: cover; object-position: top;';
+	object-position: top; 
 }
 
 
@@ -417,4 +416,3 @@ img.img-bg,
 iframe {
 	border: none;
 }
- 
