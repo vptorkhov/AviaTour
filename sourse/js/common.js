@@ -246,7 +246,12 @@ function eventHandler() {
 
 
 	function whenResize() {
- 
+		const topH = $("header ").innerHeight();
+		if ($(window).scrollTop() > topH) {
+			$('.top-nav  ').addClass('fixed');
+		} else {
+			$('.top-nav  ').removeClass('fixed');
+		}
 
 	}
 
