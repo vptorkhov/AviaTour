@@ -27,10 +27,10 @@ const JSCCommon = {
 				},
 			},
 			eforeLoad: function () {
-				document.querySelector("html").classList.add("ficed")
+				document.querySelector("html").classList.add("fixed")
 			},
 			afterClose: function () {
-				document.querySelector("html").classList.remove("ficed")
+				document.querySelector("html").classList.remove("fixed")
 			},
 		});
 		$(".modal-close-js").click(function () {
