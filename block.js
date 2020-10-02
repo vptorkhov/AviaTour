@@ -15,7 +15,7 @@ const BLOCKS_DIR = path.join(__dirname, 'sourse/pug/blocks');
 
 // default content for files in new block
 const fileSources = {
-	pug: `mixin {blockName}()
+	pug: `mixin {blockName}(data)
 	// start {blockName}
 	+b.SECTION.{blockName}.section#{blockName}&attributes(attributes)
 		.container
