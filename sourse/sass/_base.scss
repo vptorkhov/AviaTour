@@ -33,7 +33,7 @@ html {
 .section {
 	@include bgs; 
 	padding-top: var(--sPT);
-	padding-bottom: var(--sPB);
+	padding-bottom: var(--sPB); 
 }
 
 .section-title { 
