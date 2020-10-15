@@ -227,39 +227,6 @@ ul {
 }
 
 
-// select.form-control {
-// 	background-image: url(../img/svg/chevron-up.svg);
-// 	background-repeat: no-repeat;
-// 	background-position: calc(100%  - 20px) 50%; // background-size: rem(18) ;
-// 	padding-right: rem(43px);
-// 	appearance: none !important;
-
-// 	&:not([size]):not([multiple]) {
-// 		height: $input-height;
-// 	}
-
-// 	&:focus::-ms-value {
-
-// 	}
-// }
-
-
-input[type='number'] {
-	-moz-appearance: textfield;
-}
-
-select::-ms-expand {
-	display: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-	/* display: none; <- Crashes Chrome on hover */
-	-webkit-appearance: none;
-	margin: 0;
-	/* <-- Apparently some margin are still there even though it's hidden */
-}
-
 
 .invisible {
 	position: absolute;
