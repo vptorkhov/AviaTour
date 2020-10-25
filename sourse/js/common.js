@@ -26,7 +26,7 @@ const JSCCommon = {
 					// ZOOM: "Zoom"
 				},
 			},
-			eforeLoad: function () {
+			beforeLoad: function () {
 				document.querySelector("html").classList.add("fixed")
 			},
 			afterClose: function () {
