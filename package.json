@@ -20,7 +20,7 @@
     "colors": "^1.4.0",
     "cssnano": "^4.1.10",
     "del": "^5.1.0",
-    "flex-gap-polyfill": "^1.0.3",
+    "flex-gap-polyfill": "^1.0.4",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
