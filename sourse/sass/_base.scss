@@ -35,6 +35,18 @@ body {
 	min-width: 320px;  
 
 	position: relative; 
+	@include mt;
+
+	&.loaded_hiding {
+
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	.loaded {
+		pointer-events: visible;
+		opacity: 1;
+	}
 	&::before {
 		content: '';
 		position: absolute;
