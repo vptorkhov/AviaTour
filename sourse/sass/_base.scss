@@ -49,7 +49,7 @@ body {
 		}
 	}
 
-	.loaded {
+	&.loaded {
 		pointer-events: visible;
 		opacity: 1;
 	}
