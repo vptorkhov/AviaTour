@@ -1,5 +1,4 @@
 const JSCCommon = {
-	// часть вызов скриптов здесь, для использования при AJAX
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
@@ -107,7 +106,7 @@ const JSCCommon = {
 	},
 	// /mobileMenu
 
-	// табы  .
+	// tabs  .
 	tabscostume(tab) {
 
 		let tabs = {
@@ -124,7 +123,7 @@ const JSCCommon = {
 					siblingsContent.classList.remove('active')
 					element.classList.add('active');
 					tabs.Content[index].classList.add('active');
-				} 
+				}
 			})
 		})
 		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
@@ -136,7 +135,7 @@ const JSCCommon = {
 		// });
 
 	},
-	// /табы
+	// /tabs
 
 	inputMask() {
 		// mask for input
@@ -225,8 +224,8 @@ const JSCCommon = {
 	getCurrentYear(el) {
 		let now = new Date();
 		let currentYear = document.querySelector(el);
-		if (currentYear) currentYear.innerText = now.getFullYear(); 
-		}
+		if (currentYear) currentYear.innerText = now.getFullYear();
+	}
 };
 const $ = jQuery;
 
@@ -240,16 +239,13 @@ function eventHandler() {
 	JSCCommon.heightwindow();
 	JSCCommon.animateScroll();
 
-	// JSCCommon.CustomInputFile();
-	// добавляет подложку для pixel perfect
+	// JSCCommon.CustomInputFile(); 
 	var x = window.location.host;
 	let screenName;
 	screenName = 'main.jpg';
 	if (screenName && x === "localhost:3000") {
 		$(".footer").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
 	}
-	// /добавляет подложку для pixel perfect
-
 
 	function whenResize() {
 		const topH = $("header ").innerHeight();

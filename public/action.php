@@ -9,7 +9,7 @@ $mail->Priority = '1';
 $mail->Encoding = 'base64';
 $mail->CharSet = 'utf-8';
 
-///от кого письмо  
+///who send 
 $mail->setFrom('info@info.com','info info');
 
  $mail->addAddress('wol1414@gmail.com');
@@ -100,7 +100,3 @@ if (empty($_POST['example-input-field'])) {
 
 <?php 
 ?>
-
-
-
-
