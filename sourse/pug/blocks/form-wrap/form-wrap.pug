@@ -1,28 +1,28 @@
 mixin form-head()
 	form.js-form-validate( data-parsley-validate="") 
-		input(type='hidden', class="order", name='order', value=`Заявка  с сайта` ) 
+		input(class="order", name='order', type='hidden', value=`Заявка  с сайта`) 
 		block
 
 mixin input(placeholder,  t='text', label, name= t)
 	mixin t(t='text',placeholder, name= t)
 		if t== "textarea"
-			+e.TEXTAREA.input.form-control(placeholder= placeholder name= name)&attributes(attributes)
+			+e.TEXTAREA.input.form-control(name=name placeholder=placeholder)
 		else if t== "select"
 			+e.SELECT.input.form-select( name= name)&attributes(attributes)
 				option(value= placeholder)= placeholder
 				- for (var x = 1; x < 5; x++)
 					option(value=` placeholder ${x}`)= `placeholder ${x}`
 		else if t=='file'
-			+e.INPUT.input.form-control(type= t  name= name)&attributes(attributes)
+			+e.INPUT.input.form-control(name=name type=t)
 			
 		else if t=='number'
-			+e.INPUT.input.form-control(type= t placeholder= placeholder step='any' name= name)&attributes(attributes)
+			+e.INPUT.input.form-control(name=name type=t placeholder=placeholder step='any')
 		else
-			+e.INPUT.input.form-control(type= t placeholder= placeholder  name= name)&attributes(attributes)
+			+e.INPUT.input.form-control(name=name type=t placeholder=placeholder)
 	+e.input-wrap.form-group
 		if label
 			label
-				+e.SPAN.title= label
+				+e.SPAN.input-title= label
 				+t(t,placeholder, name)&attributes(attributes)
 				block
 		else
@@ -44,19 +44,19 @@ mixin form-wrap(inp)
 	+b.form-wrap&attributes(attributes)
 		form
 			if inp
-				input(type='hidden',  name='example-input-field')
-				input(type='hidden', class="order", name='order', value=`Заявка  с сайта`) 
-				input(type="hidden" class='utm_source' name='utm_source')
-				input(type="hidden" class='utm_term' name='utm_term')
-				input(type="hidden" class='utm_medium' name='utm_medium')
-				input(type="hidden" class='utm_campaign' name='utm_campaign')
+				input(name='example-input-field', type='hidden')
+				input(class="order", name='order', type='hidden', value=`Заявка  с сайта`) 
+				input(class='utm_source' name='utm_source' type="hidden")
+				input(class='utm_term' name='utm_term' type="hidden")
+				input(class='utm_medium' name='utm_medium' type="hidden")
+				input(class='utm_campaign' name='utm_campaign' type="hidden")
 			block
 //- /wrapper for form
 
 
 mixin in-c(typ="checkbox", text, name= typ )
 	+b.LABEL.custom-input
-		+e.INPUT.input(type= typ , name= name)&attributes(attributes)
+		+e.INPUT.input(name=name, type=typ)
 		+e.SPAN.lab
 		if block
 			block 
