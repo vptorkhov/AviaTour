@@ -149,8 +149,7 @@ const JSCCommon = {
 	ifie() {
 		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 		if (isIE11) {
-			$("body").after('<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>')
-
+			document.body.innerHTML += '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>';
 		}
 	},
 	sendForm() {
@@ -166,7 +165,7 @@ const JSCCommon = {
 			return b;
 		})();
 		// form
-		$("form").submit(function (e) {
+		$(document).on('submit', "form", function (e) {
 			e.preventDefault();
 			const th = $(this);
 			var data = th.serialize();
@@ -212,7 +211,7 @@ const JSCCommon = {
 	},
 	animateScroll() {
 		// листалка по стр
-		$(" .top-nav li a, .scroll-link").click(function () {
+		$(document).on('click', " .top-nav li a, .scroll-link", function () {
 			const elementClick = $(this).attr("href");
 			const destination = $(elementClick).offset().top;
 
@@ -300,16 +299,17 @@ function eventHandler() {
 	});
 	// modal window
 
-	window.onload = function () {
-		document.body.classList.add('loaded_hiding');
-		window.setTimeout(function () {
-			document.body.classList.add('loaded');
-			document.body.classList.remove('loaded_hiding');
-		}, 500);
-	}
 };
 if (document.readyState !== 'loading') {
 	eventHandler();
 } else {
 	document.addEventListener('DOMContentLoaded', eventHandler);
+}
+
+window.onload = function () {
+	document.body.classList.add('loaded_hiding');
+	window.setTimeout(function () {
+		document.body.classList.add('loaded');
+		document.body.classList.remove('loaded_hiding');
+	}, 500);
 }

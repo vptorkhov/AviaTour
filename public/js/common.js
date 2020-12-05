@@ -7,7 +7,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var JSCCommon = {
-	// часть вызов скриптов здесь, для использования при AJAX
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
@@ -122,7 +121,7 @@ var JSCCommon = {
 		}
 	},
 	// /mobileMenu
-	// табы  .
+	// tabs  .
 	tabscostume: function tabscostume(tab) {
 		var tabs = {
 			Btn: [].slice.call(document.querySelectorAll(".".concat(tab, "__btn"))),
@@ -147,7 +146,7 @@ var JSCCommon = {
 		// 		.eq($(this).index()).fadeIn().addClass('active');
 		// });
 	},
-	// /табы
+	// /tabs
 	inputMask: function inputMask() {
 		// mask for input
 		var InputTel = [].slice.call(document.querySelectorAll('input[type="tel"]'));
@@ -161,7 +160,7 @@ var JSCCommon = {
 		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
 		if (isIE11) {
-			$("body").after('<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>');
+			document.body.innerHTML += '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>';
 		}
 	},
 	sendForm: function sendForm() {
@@ -180,7 +179,7 @@ var JSCCommon = {
 		}(); // form
 
 
-		$("form").submit(function (e) {
+		$(document).on('submit', "form", function (e) {
 			e.preventDefault();
 			var th = $(this);
 			var data = th.serialize();
@@ -251,8 +250,7 @@ function eventHandler() {
 	JSCCommon.inputMask();
 	JSCCommon.sendForm();
 	JSCCommon.heightwindow();
-	JSCCommon.animateScroll(); // JSCCommon.CustomInputFile();
-	// добавляет подложку для pixel perfect
+	JSCCommon.animateScroll(); // JSCCommon.CustomInputFile(); 
 
 	var x = window.location.host;
 	var screenName;
@@ -260,8 +258,7 @@ function eventHandler() {
 
 	if (screenName && x === "localhost:3000") {
 		$(".footer").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
-	} // /добавляет подложку для pixel perfect
-
+	}
 
 	function whenResize() {
 		var topH = $("header ").innerHeight();
@@ -304,6 +301,14 @@ function eventHandler() {
 		slideToClickedSlide: true,
 		freeModeMomentum: true
 	})); // modal window
+
+	window.onload = function () {
+		document.body.classList.add('loaded_hiding');
+		window.setTimeout(function () {
+			document.body.classList.add('loaded');
+			document.body.classList.remove('loaded_hiding');
+		}, 500);
+	};
 }
 
 ;
