@@ -1,3 +1,4 @@
+
 const JSCCommon = {
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
@@ -110,15 +111,15 @@ const JSCCommon = {
 	tabscostume(tab) {
 
 		let tabs = {
-			Btn: [].slice.call(document.querySelectorAll(`.${tab}__btn`)),
-			BtnParent: [].slice.call(document.querySelectorAll(`.${tab}__caption`)),
-			Content: [].slice.call(document.querySelectorAll(`.${tab}__content`)),
+			Btn: [].slice.call(document.querySelectorAll(`.tabs__btn`)),
+			BtnParent: [].slice.call(document.querySelectorAll(`.tabs__caption`)),
+			Content: [].slice.call(document.querySelectorAll(`.tabs__content`)),
 		}
 		tabs.Btn.forEach((element, index) => {
 			element.addEventListener('click', () => {
 				if (!element.classList.contains('active')) {
-					let siblings = element.parentNode.querySelector(`.${tab}__btn.active`);
-					let siblingsContent = tabs.Content[index].parentNode.querySelector(`.${tab}__content.active`);
+					let siblings = element.parentNode.querySelector(`.tabs__btn.active`);
+					let siblingsContent = tabs.Content[index].parentNode.querySelector(`.tabs__content.active`);
 					siblings.classList.remove('active');
 					siblingsContent.classList.remove('active')
 					element.classList.add('active');
@@ -226,12 +227,12 @@ const JSCCommon = {
 		if (currentYear) currentYear.innerText = now.getFullYear();
 	}
 };
-const $ = jQuery;
+// const $ = jQuery;
 
 function eventHandler() {
 	JSCCommon.ifie();
 	JSCCommon.modalCall();
-	JSCCommon.tabscostume('tabs');
+	JSCCommon.tabscostume('tabs--js');
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask();
 	JSCCommon.sendForm();
@@ -243,15 +244,15 @@ function eventHandler() {
 	let screenName;
 	screenName = 'main.jpg';
 	if (screenName && x === "localhost:3000") {
-		$(".footer").after(`<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
+		document.body.innerHTML += `<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`;
 	}
 
 	function whenResize() {
-		const topH = $("header ").innerHeight();
+		const topH = document.querySelector("header ")..offsetHeight;
 		if ($(window).scrollTop() > topH) {
-			$('.top-nav  ').addClass('fixed');
+			document.querySelector('.top-nav  ').classList.add('fixed');
 		} else {
-			$('.top-nav  ').removeClass('fixed');
+			document.querySelector('.top-nav  ').classList.remove('fixed');
 		}
 
 	}
@@ -306,10 +307,10 @@ if (document.readyState !== 'loading') {
 	document.addEventListener('DOMContentLoaded', eventHandler);
 }
 
-window.onload = function () {
-	document.body.classList.add('loaded_hiding');
-	window.setTimeout(function () {
-		document.body.classList.add('loaded');
-		document.body.classList.remove('loaded_hiding');
-	}, 500);
-}
+// window.onload = function () {
+// 	document.body.classList.add('loaded_hiding');
+// 	window.setTimeout(function () {
+// 		document.body.classList.add('loaded');
+// 		document.body.classList.remove('loaded_hiding');
+// 	}, 500);
+// }

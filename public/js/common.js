@@ -223,7 +223,7 @@ var JSCCommon = {
 	},
 	animateScroll: function animateScroll() {
 		// листалка по стр
-		$(" .top-nav li a, .scroll-link").click(function () {
+		$(document).on('click', " .top-nav li a, .scroll-link", function () {
 			var elementClick = $(this).attr("href");
 			var destination = $(elementClick).offset().top;
 			$('html, body').animate({
@@ -237,8 +237,7 @@ var JSCCommon = {
 		var currentYear = document.querySelector(el);
 		if (currentYear) currentYear.innerText = now.getFullYear();
 	}
-};
-var $ = jQuery;
+}; // const $ = jQuery;
 
 function eventHandler() {
 	var _defaultSl;
@@ -301,14 +300,6 @@ function eventHandler() {
 		slideToClickedSlide: true,
 		freeModeMomentum: true
 	})); // modal window
-
-	window.onload = function () {
-		document.body.classList.add('loaded_hiding');
-		window.setTimeout(function () {
-			document.body.classList.add('loaded');
-			document.body.classList.remove('loaded_hiding');
-		}, 500);
-	};
 }
 
 ;
@@ -317,4 +308,10 @@ if (document.readyState !== 'loading') {
 	eventHandler();
 } else {
 	document.addEventListener('DOMContentLoaded', eventHandler);
-}
+} // window.onload = function () {
+// 	document.body.classList.add('loaded_hiding');
+// 	window.setTimeout(function () {
+// 		document.body.classList.add('loaded');
+// 		document.body.classList.remove('loaded_hiding');
+// 	}, 500);
+// }

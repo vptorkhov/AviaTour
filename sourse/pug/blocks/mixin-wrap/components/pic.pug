@@ -14,50 +14,21 @@ mixin pic(i, bg,  media='576px')
 		if source
 			source(type=`image/${exp}` srcset=url)&attributes(attributes)
 		else
-			noscript(class="loading-lazy")
+			
 				img(class=(bg=="bg" ? "object-fit-js": null ) src=url alt="" loading='lazy')
 	
 	// picture
 	
 	picture()&attributes(attributes) 
-		if media
-			
-			each val in [webpFormat,exp] 
-				each val2 in [smpath2,smpath1] 
-					+src(i,val,`${val2 + (val ==  "webp" ? "/webp" : "") }`,"source")(media=(val2 == smpath2 ? "(min-width:"+ media+")" : null))
-		else 
-			if webpFormat
-				+src(i,'webp',smpath2+`/webp`,"source")
-			//- // /webp images  
-		+src(i, exp,smpath2, "",bg) 
-	// /picture
-
-mixin pic2({i, bg, lazy="lazy", media='576px'})
-	-
-		const smpath2 = "2x"
-		const smpath1 = "1x"
-		let expArr = i.split(".")
-		let exp = (expArr[1] || 'jpg')
-	mixin src(i, exp, path , lazy, source, bg)
-		-
-			const url= `img/@${path}/${expArr[0]}.${exp}`
-			const ifLazy = (lazy== "lazy")
-			const src = ( ifLazy ? "#" : url)
-			const data = (ifLazy ?  url  : null)
-
-		if source
-			source(data-srcset=data type=`image/${exp}` srcset=src)
-		else
-			img(class=(bg=="bg" ? "object-fit-js": null ), data-src=data, src=src, alt="")
-	
-	// picture
-	picture( class= lazy)&attributes(attributes) 
-		if media 
-			each val in ["webp",exp] 
-				each val2 in [smpath2,smpath1] 
-					+src(i,val,`${val2 + (val ==  "webp" ? "/webp" : "") }`,lazy,"source")(media=(val2 == smpath2 ? "(min-width:"+ media+")" : null))
-		else 
-			+src(i,'webp',smpath2+`/webp`,lazy,"source")
-			// /webp images  
-		+src(i, exp,smpath2, lazy,"",bg) 
+		noscript(class="loading-lazy")
+			if media
+				
+				each val in [webpFormat,exp] 
+					each val2 in [smpath2,smpath1] 
+						+src(i,val,`${val2 + (val ==  "webp" ? "/webp" : "") }`,"source")(media=(val2 == smpath2 ? "(min-width:"+ media+")" : null))
+			else 
+				if webpFormat
+					+src(i,'webp',smpath2+`/webp`,"source")
+				//- // /webp images  
+			+src(i, exp,smpath2, "",bg) 
 	// /picture

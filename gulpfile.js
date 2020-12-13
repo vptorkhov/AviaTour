@@ -19,7 +19,8 @@ global.$ = {
 	postcssPresetEnv: require('postcss-preset-env'),
 	cssnano: require('cssnano'),
 	nested: require('postcss-nested'),
-	plumber: require('gulp-plumber'), 
+	plumber: require('gulp-plumber'),
+	webpack: require('webpack-stream'),
 	path: {
 		tasks: require('./gulp/config/tasks.js'),
 	},
@@ -38,11 +39,12 @@ $.gulp.task('default', $.gulp.series('svg', 'svgCopy',
 	// $.gulp.parallel('svg','pug','scripts:lib','scripts','file'),
 	// $.gulp.parallel('file'),
 
-	$.gulp.parallel( 
+	$.gulp.parallel(
 		'pug',
 		'img',
 		'libs',
 		'scripts',
+		'scripts:common',
 		'sass',
 		'serv', 'watch'
 		// 'scripts:common',
