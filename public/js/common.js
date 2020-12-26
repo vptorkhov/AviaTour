@@ -124,15 +124,15 @@ var JSCCommon = {
 	// tabs  .
 	tabscostume: function tabscostume(tab) {
 		var tabs = {
-			Btn: [].slice.call(document.querySelectorAll(".".concat(tab, "__btn"))),
-			BtnParent: [].slice.call(document.querySelectorAll(".".concat(tab, "__caption"))),
-			Content: [].slice.call(document.querySelectorAll(".".concat(tab, "__content")))
+			Btn: [].slice.call(document.querySelectorAll(".tabs__btn")),
+			BtnParent: [].slice.call(document.querySelectorAll(".tabs__caption")),
+			Content: [].slice.call(document.querySelectorAll(".tabs__content"))
 		};
 		tabs.Btn.forEach(function (element, index) {
 			element.addEventListener('click', function () {
 				if (!element.classList.contains('active')) {
-					var siblings = element.parentNode.querySelector(".".concat(tab, "__btn.active"));
-					var siblingsContent = tabs.Content[index].parentNode.querySelector(".".concat(tab, "__content.active"));
+					var siblings = element.parentNode.querySelector(".tabs__btn.active");
+					var siblingsContent = tabs.Content[index].parentNode.querySelector(".tabs__content.active");
 					siblings.classList.remove('active');
 					siblingsContent.classList.remove('active');
 					element.classList.add('active');
@@ -160,7 +160,7 @@ var JSCCommon = {
 		var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
 
 		if (isIE11) {
-			document.body.innerHTML += '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>';
+			document.body.insertAdjacentHTML("beforeend", '<div class="browsehappy">	<p class=" container">К сожалению, вы используете устаревший браузер. Пожалуйста, <a href="http://browsehappy.com/" target="_blank">обновите ваш браузер</a>, чтобы улучшить производительность, качество отображаемого материала и повысить безопасность.</p></div>');
 		}
 	},
 	sendForm: function sendForm() {
@@ -222,7 +222,6 @@ var JSCCommon = {
 		});
 	},
 	animateScroll: function animateScroll() {
-		// листалка по стр
 		$(document).on('click', " .top-nav li a, .scroll-link", function () {
 			var elementClick = $(this).attr("href");
 			var destination = $(elementClick).offset().top;
@@ -237,14 +236,15 @@ var JSCCommon = {
 		var currentYear = document.querySelector(el);
 		if (currentYear) currentYear.innerText = now.getFullYear();
 	}
-}; // const $ = jQuery;
+};
+var $ = jQuery;
 
 function eventHandler() {
 	var _defaultSl;
 
 	JSCCommon.ifie();
 	JSCCommon.modalCall();
-	JSCCommon.tabscostume('tabs');
+	JSCCommon.tabscostume('.tabs--js');
 	JSCCommon.mobileMenu();
 	JSCCommon.inputMask();
 	JSCCommon.sendForm();
@@ -256,16 +256,16 @@ function eventHandler() {
 	screenName = 'main.jpg';
 
 	if (screenName && x === "localhost:3000") {
-		$(".footer").after("<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
+		document.body.insertAdjacentHTML("beforeend", "<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
 	}
 
 	function whenResize() {
-		var topH = $("header ").innerHeight();
+		var topH = document.querySelector("header ").offsetHeight;
 
 		if ($(window).scrollTop() > topH) {
-			$('.top-nav  ').addClass('fixed');
+			document.querySelector('.top-nav  ').classList.add('fixed');
 		} else {
-			$('.top-nav  ').removeClass('fixed');
+			document.querySelector('.top-nav  ').classList.remove('fixed');
 		}
 	}
 

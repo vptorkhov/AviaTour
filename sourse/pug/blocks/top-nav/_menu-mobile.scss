@@ -47,6 +47,7 @@ $h: em(2);
 		transition: all 0.3s;
 		backface-visibility: hidden;
 		border-radius: 6px;
+		transform-origin: 50% 50%;
 	}
 
 	// &.on {
@@ -62,15 +63,15 @@ $h: em(2);
 
 		top: 0;
 		bottom: 0;
-		transform-origin: 50% 50%;
+		
 	}
 
 	&.on span:before {
-		transform: rotate(45deg);
+		transform: rotate3d(0,0,1, 45deg);
 	}
 
 	&.on span:after {
-		transform: rotate(-45deg);
+		transform: rotate3d(0,0,1, -45deg);
 	}
 }
 
@@ -83,7 +84,10 @@ $h: em(2);
 	top: 0;
 	// left: 0;
 	right: 0;
-	transform: translate(120%, 0);
+	&:not(.active){
+		transform: translate3d(120%, 0,0);
+
+	}
 	@include mt(.6);
 	will-change: transform;
 
@@ -96,9 +100,7 @@ $h: em(2);
 		height: 100%;
 	}
 
-	&.active {
-		transform: translate(0, 0);
-
+	&.active { 
 		.toggle-menu-mobile {
 			opacity: 1;
 		}
