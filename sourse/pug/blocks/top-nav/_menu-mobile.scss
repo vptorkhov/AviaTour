@@ -86,6 +86,7 @@ $h: em(2);
 	right: 0;
 	&:not(.active){
 		transform: translate3d(120%, 0,0);
+		opacity: 0;
 
 	}
 	@include mt(.6);
