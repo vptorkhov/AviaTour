@@ -243,7 +243,7 @@ function eventHandler() {
 	var x = window.location.host;
 	let screenName;
 	screenName = 'main.jpg';
-	if (screenName && x === "localhost:3000") {
+	if (screenName && x.includes("localhost:30")) {
 		document.body.insertAdjacentHTML("beforeend", `<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
 	}
 
