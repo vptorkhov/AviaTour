@@ -249,10 +249,13 @@ function eventHandler() {
 
 	function whenResize() {
 		const topH = document.querySelector("header ").offsetHeight;
-		if ($(window).scrollTop() > topH) {
-			document.querySelector('.top-nav  ').classList.add('fixed');
-		} else {
-			document.querySelector('.top-nav  ').classList.remove('fixed');
+		if (topH) {
+
+			if ($(window).scrollTop() > topH) {
+				document.querySelector('.top-nav  ').classList.add('fixed');
+			} else {
+				document.querySelector('.top-nav  ').classList.remove('fixed');
+			}
 		}
 
 	}
