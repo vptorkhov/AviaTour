@@ -255,17 +255,19 @@ function eventHandler() {
 	var screenName;
 	screenName = 'main.jpg';
 
-	if (screenName && x === "localhost:3000") {
+	if (screenName && x.includes("localhost:30")) {
 		document.body.insertAdjacentHTML("beforeend", "<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
 	}
 
 	function whenResize() {
 		var topH = document.querySelector("header ").offsetHeight;
 
-		if ($(window).scrollTop() > topH) {
-			document.querySelector('.top-nav  ').classList.add('fixed');
-		} else {
-			document.querySelector('.top-nav  ').classList.remove('fixed');
+		if (topH) {
+			if ($(window).scrollTop() > topH) {
+				document.querySelector('.top-nav  ').classList.add('fixed');
+			} else {
+				document.querySelector('.top-nav  ').classList.remove('fixed');
+			}
 		}
 	}
 

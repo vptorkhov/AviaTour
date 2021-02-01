@@ -247,6 +247,8 @@ function eventHandler() {
 		document.body.insertAdjacentHTML("beforeend", `<div class="pixel-perfect" style="background-image: url(screen/${screenName});"></div>`);
 	}
 
+
+
 	function whenResize() {
 		const topH = document.querySelector("header ").offsetHeight;
 		if (topH) {
@@ -257,7 +259,7 @@ function eventHandler() {
 				document.querySelector('.top-nav  ').classList.remove('fixed');
 			}
 		}
-
+		
 	}
 
 	window.addEventListener('resize', () => {
