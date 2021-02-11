@@ -13,6 +13,9 @@
 		bottom: auto;
 		margin-top: 0;
 	}
+	.row{
+		@include roww(20px, m);
+	}
 
 	// 
 	@include media-breakpoint-up(xl) {}
