@@ -168,7 +168,7 @@
     position: relative;
     height: 0;
     display: block;
-    padding-bottom: calc(var(--ratio) * 100%);
+    padding-block-end: calc(var(--ratio) * 100%);
   }
 }
 
@@ -198,13 +198,13 @@
   --w: #{$width};
   position: relative;
   width: var(--w);
-  left: calc(-1 * (var(--w) - 100%) / 2);
+  inset-inline-start: calc(-1 * (var(--w) - 100%) / 2);
 }
 
 @mixin tear-drop() {
   position: static;
   width: 100%;
-  left: unset;
+  inset-inline-start: unset;
 }
 
 @mixin ell($n: 3) {
