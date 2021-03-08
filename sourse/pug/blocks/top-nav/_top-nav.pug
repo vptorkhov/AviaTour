@@ -9,7 +9,7 @@ mixin mob-mnu()
 		//- let dataJson = JSON.parse(json);
 	//- h1= dataJson['lala'] 
 	+b.menu-mobile--js.d-lg-none
-		+b.toggle-menu-mobile--js
+		+b.toggle-menu-mobile--js.on
 			span
 		+e.inner
 		
@@ -24,7 +24,7 @@ mixin top-nav()
 				.col-auto.d-lg-none
 					+b.toggle-menu-mobile--js
 						span
-				.col
+				.col.d-none.d-lg-block
 					+mnu()
 					
 	// end top-nav

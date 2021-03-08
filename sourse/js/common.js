@@ -1,5 +1,6 @@
 
 const JSCCommon = {
+
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
@@ -64,69 +65,56 @@ const JSCCommon = {
 	},
 	// /modalCall
 	toggleMenu() {
-		if (this.btnToggleMenuMobile) {
-			this.btnToggleMenuMobile.forEach(element => {
-				element.addEventListener('click', () => {
-					this.btnToggleMenuMobile.forEach(element => element.classList.toggle("on"));
-					this.menuMobile.classList.toggle("active");
-					document.body.classList.toggle("fixed");
-					document.querySelector('html').classList.toggle("fixed");
-					return false;
-				});
-			});
-		}
-	},
+		const toggle = this.btnToggleMenuMobile;
+		const menu = this.menuMobile;
+		document.addEventListener("click", function (event) {
+			const toggleEv = event.target.closest(".toggle-menu-mobile--js");
+			if (!toggleEv) return;
+			toggle.forEach(el => el.classList.toggle("on"));
+			menu.classList.toggle("active");
+			[document.body, document.querySelector('html')].forEach(el => el.classList.toggle("fixed"));
 
+		}, { passive: true });
+	},
 	closeMenu() {
-		if (this.menuMobile) {
-			this.btnToggleMenuMobile.forEach(element => {
-				element.classList.remove("on");
-			});
-			this.menuMobile.classList.remove("active");
-			document.body.classList.remove("fixed");
-			document.querySelector('html').classList.remove("fixed");
-		}
+		if (!this.menuMobile) return;
+		this.btnToggleMenuMobile.forEach(element => element.classList.remove("on"));
+		this.menuMobile.classList.remove("active");
+		[document.body, document.querySelector('html')].forEach(el => el.classList.remove("fixed"));
 
 	},
 	mobileMenu() {
-		if (this.menuMobileLink) {
-			this.toggleMenu();
-			document.addEventListener('mouseup', (event) => {
-				let container = event.target.closest(".menu-mobile--js.active"); // (1)
-				if (!container) {
-					this.closeMenu();
-				}
-			}, { passive: true });
+		if (!this.menuMobileLink) return;
+		this.toggleMenu();
+		document.addEventListener('mouseup', (event) => {
+			let container = event.target.closest(".menu-mobile--js.active"); // (1)
+			if (!container) this.closeMenu();
+		}, { passive: true });
 
-			window.addEventListener('resize', () => {
-				if (window.matchMedia("(min-width: 992px)").matches) {
-					JSCCommon.closeMenu();
-				}
-			}, { passive: true });
-		}
+		window.addEventListener('resize', () => {
+			if (window.matchMedia("(min-width: 992px)").matches) this.closeMenu();
+		}, { passive: true });
 	},
 	// /mobileMenu
 
 	// tabs  .
 	tabscostume(tab) {
 
-		let tabs = {
-			Btn: [].slice.call(document.querySelectorAll(`.tabs__btn`)),
-			BtnParent: [].slice.call(document.querySelectorAll(`.tabs__caption`)),
-			Content: [].slice.call(document.querySelectorAll(`.tabs__content`)),
-		}
-		tabs.Btn.forEach((element, index) => {
-			element.addEventListener('click', () => {
-				if (!element.classList.contains('active')) {
-					let siblings = element.parentNode.querySelector(`.tabs__btn.active`);
-					let siblingsContent = tabs.Content[index].parentNode.querySelector(`.tabs__content.active`);
-					siblings.classList.remove('active');
-					siblingsContent.classList.remove('active')
-					element.classList.add('active');
-					tabs.Content[index].classList.add('active');
-				}
-			})
+		document.addEventListener('click', function (element) {
+			const btn = element.target.closest(`.tabs__btn:not(.active)`);
+
+			if (!btn) return;
+
+			const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+			const index = indexOf(btn);
+			const newContent = btn.closest(".tabs").querySelectorAll(`.tabs__content`)[index];
+			const btnActive = btn.closest(`.tabs__caption`).querySelector(`.tabs__btn.active`);
+			const oldActiveContent = btn.closest(`.tabs`).querySelector(`.tabs__content.active`);
+			[btnActive, oldActiveContent].forEach(element => element.classList.remove('active'));
+			[btn, newContent].forEach(element => element.classList.add('active'));
+
 		})
+
 		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
 		// 	$(this)
 		// 		.addClass('active').siblings().removeClass('active')
@@ -141,9 +129,7 @@ const JSCCommon = {
 	inputMask() {
 		// mask for input
 		let InputTel = [].slice.call(document.querySelectorAll('input[type="tel"]'));
-		InputTel.forEach(function (element) {
-			element.setAttribute("pattern", "[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}")
-		});
+		InputTel.forEach(element => element.setAttribute("pattern", "[+][0-9]{1}[(][0-9]{3}[)][0-9]{3}-[0-9]{2}-[0-9]{2}"));
 		Inputmask("+9(999)999-99-99").mask(InputTel);
 	},
 	// /inputMask
@@ -250,15 +236,13 @@ function eventHandler() {
 
 
 	function whenResize() {
-		const topH = document.querySelector("header ").offsetHeight;
-		if (topH) {
-
-			if ($(window).scrollTop() > topH) {
-				document.querySelector('.top-nav  ').classList.add('fixed');
-			} else {
-				document.querySelector('.top-nav  ').classList.remove('fixed');
-			}
-		}
+		let topNav = document.querySelector('.top-nav  ');
+		if (!topNav) return;
+		window.addEventListener('scroll', function (e) {
+			this.scrollY > 0
+				? topNav.classList.add('fixed')
+				: topNav.classList.remove('fixed');
+		}, { passive: true })
 
 	}
 

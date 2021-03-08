@@ -78,9 +78,8 @@ var JSCCommon = {
 				return el.classList.toggle("on");
 			});
 			menu.classList.toggle("active");
-			[document.body, document.querySelector('html')].forEach(function (el) {
-				return el.classList.toggle("fixed");
-			});
+			document.body.classList.toggle("fixed");
+			document.querySelector('html').classList.toggle("fixed");
 		}, {
 			passive: true
 		});
@@ -91,9 +90,8 @@ var JSCCommon = {
 			return element.classList.remove("on");
 		});
 		this.menuMobile.classList.remove("active");
-		[document.body, document.querySelector('html')].forEach(function (el) {
-			return el.classList.remove("fixed");
-		});
+		document.body.classList.remove("fixed");
+		document.querySelector('html').classList.remove("fixed");
 	},
 	mobileMenu: function mobileMenu() {
 		var _this = this;
@@ -125,16 +123,29 @@ var JSCCommon = {
 			};
 
 			var index = indexOf(btn);
-			var newContent = btn.closest(".tabs").querySelectorAll(".tabs__content")[index];
+			var newContent = btn.closest(".tabs").querySelector(".tabs__content:nth-child(".concat(index + 1, ")"));
+			console.log(newContent);
 			var btnActive = btn.closest(".tabs__caption").querySelector(".tabs__btn.active");
-			var oldActiveContent = btn.closest(".tabs").querySelector(".tabs__content.active");
+			var oldActiveContent = this.querySelector(".tabs__content.active");
 			[btnActive, oldActiveContent].forEach(function (element) {
 				return element.classList.remove('active');
 			});
 			[btn, newContent].forEach(function (element) {
 				return element.classList.add('active');
 			});
-		}); // $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
+		}); // tabs.Btn.forEach((element, index) => {
+		// 	element.addEventListener('click', () => {
+		// 		if (!element.classList.contains('active')) {
+		// 			//turn off old
+		// 			oldActiveEl.classList.remove('active');
+		// 			oldActiveContent.classList.remove('active')
+		// 			//turn on new(cklicked el)
+		// 			element.classList.add('active');
+		// 			tabs.Content[index].classList.add('active');
+		// 		}
+		// 	})
+		// })
+		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
 		// 	$(this)
 		// 		.addClass('active').siblings().removeClass('active')
 		// 		.closest('.' + tab).find('.' + tab + '__content').hide().removeClass('active')
