@@ -99,20 +99,43 @@ const JSCCommon = {
 
 	// tabs  .
 	tabscostume(tab) {
-
-		document.addEventListener('click', function (element) {
-			const btn = element.target.closest(`.tabs__btn:not(.active)`);
-
-			if (!btn) return;
-
-			const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
-			const index = indexOf(btn);
-			const newContent = btn.closest(".tabs").querySelectorAll(`.tabs__content`)[index];
-			const btnActive = btn.closest(`.tabs__caption`).querySelector(`.tabs__btn.active`);
-			const oldActiveContent = btn.closest(`.tabs`).querySelector(`.tabs__content.active`);
-			[btnActive, oldActiveContent].forEach(element => element.classList.remove('active'));
-			[btn, newContent].forEach(element => element.classList.add('active'));
-
+		const tabs = document.querySelectorAll(".tabs");
+		const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+		tabs.forEach(element => {
+			let tabs = element;
+			const tabsCaption = tabs.querySelector(".tabs__caption");
+			const tabsBtn = tabsCaption.querySelectorAll(".tabs__btn");
+			const tabsWrap = tabs.querySelector(".tabs__wrap");
+			const tabsContent = tabsWrap.querySelectorAll(".tabs__content");
+			const random = Math.trunc(Math.random() * 1000);
+			tabsBtn.forEach((el, index) => {
+				const tabIndex = `tab-content-${random}-${index}`;
+				el.dataset.tabBtn = tabIndex;
+			})
+			tabsContent.forEach((el, index) => {
+				const tabIndex = `tab-content-${random}-${index}`;
+				el.dataset.tabContent = tabIndex;
+				const active = el.classList.contains('active') ? 'active' : '';
+				console.log(tabsBtn[index].innerHTML);
+				el.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary d-block mb-1 ${active}" data-tab-btn="${tabIndex}">${tabsBtn[index].innerHTML}</div>`)
+			})
+			document.addEventListener('click', function (element) {
+				const btn = element.target.closest(`[data-tab-btn]:not(.active)`);
+				if (!btn) return;
+				const data = btn.dataset.tabBtn;
+				const tabsAllBtn = btn.closest('.tabs').querySelectorAll(`[data-tab-btn`);
+				const content = btn.closest('.tabs').querySelectorAll(`[data-tab-content]`);
+				tabsAllBtn.forEach(element => {
+					element.dataset.tabBtn == data
+						? element.classList.add('active')
+						: element.classList.remove('active')
+				});
+				content.forEach(element => {
+					element.dataset.tabContent == data
+						? (element.classList.add('active'), element.previousSibling.classList.add('active'))
+						: element.classList.remove('active')
+				});
+			})
 		})
 
 		// $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {

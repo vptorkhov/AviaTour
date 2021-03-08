@@ -116,23 +116,42 @@ var JSCCommon = {
 	// /mobileMenu
 	// tabs  .
 	tabscostume: function tabscostume(tab) {
-		document.addEventListener('click', function (element) {
-			var btn = element.target.closest(".tabs__btn:not(.active)");
-			if (!btn) return;
+		var tabs = document.querySelectorAll(".tabs");
 
-			var indexOf = function indexOf(element) {
-				return Array.from(element.parentNode.children).indexOf(element);
-			};
+		var indexOf = function indexOf(element) {
+			return Array.from(element.parentNode.children).indexOf(element);
+		};
 
-			var index = indexOf(btn);
-			var newContent = btn.closest(".tabs").querySelectorAll(".tabs__content")[index];
-			var btnActive = btn.closest(".tabs__caption").querySelector(".tabs__btn.active");
-			var oldActiveContent = btn.closest(".tabs").querySelector(".tabs__content.active");
-			[btnActive, oldActiveContent].forEach(function (element) {
-				return element.classList.remove('active');
+		tabs.forEach(function (element) {
+			var tabs = element;
+			var tabsCaption = tabs.querySelector(".tabs__caption");
+			var tabsBtn = tabsCaption.querySelectorAll(".tabs__btn");
+			var tabsWrap = tabs.querySelector(".tabs__wrap");
+			var tabsContent = tabsWrap.querySelectorAll(".tabs__content");
+			var random = Math.trunc(Math.random() * 1000);
+			tabsBtn.forEach(function (el, index) {
+				var tabIndex = "tab-content-".concat(random, "-").concat(index);
+				el.dataset.tabBtn = tabIndex;
 			});
-			[btn, newContent].forEach(function (element) {
-				return element.classList.add('active');
+			tabsContent.forEach(function (el, index) {
+				var tabIndex = "tab-content-".concat(random, "-").concat(index);
+				el.dataset.tabContent = tabIndex;
+				var active = el.classList.contains('active') ? 'active' : '';
+				console.log(tabsBtn[index].innerHTML);
+				el.insertAdjacentHTML("beforebegin", "<div class=\"tabs__btn-accordion  btn btn-primary d-block mb-1 ".concat(active, "\" data-tab-btn=\"").concat(tabIndex, "\">").concat(tabsBtn[index].innerHTML, "</div>"));
+			});
+			document.addEventListener('click', function (element) {
+				var btn = element.target.closest("[data-tab-btn]:not(.active)");
+				if (!btn) return;
+				var data = btn.dataset.tabBtn;
+				var tabsAllBtn = btn.closest('.tabs').querySelectorAll("[data-tab-btn");
+				var content = btn.closest('.tabs').querySelectorAll("[data-tab-content]");
+				tabsAllBtn.forEach(function (element) {
+					element.dataset.tabBtn == data ? element.classList.add('active') : element.classList.remove('active');
+				});
+				content.forEach(function (element) {
+					element.dataset.tabContent == data ? (element.classList.add('active'), element.previousSibling.classList.add('active')) : element.classList.remove('active');
+				});
 			});
 		}); // $('.' + tab + '__caption').on('click', '.' + tab + '__btn:not(.active)', function (e) {
 		// 	$(this)
