@@ -99,8 +99,8 @@ const JSCCommon = {
 
 	// tabs  .
 	tabscostume(tab) {
-		const tabs = document.querySelectorAll(".tabs");
-		const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+		const tabs = document.querySelectorAll(tab);
+		// const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
 		tabs.forEach(element => {
 			let tabs = element;
 			const tabsCaption = tabs.querySelector(".tabs__caption");
@@ -109,22 +109,24 @@ const JSCCommon = {
 			const tabsContent = tabsWrap.querySelectorAll(".tabs__content");
 			const random = Math.trunc(Math.random() * 1000);
 			tabsBtn.forEach((el, index) => {
-				const tabIndex = `tab-content-${random}-${index}`;
-				el.dataset.tabBtn = tabIndex;
-			})
-			tabsContent.forEach((el, index) => {
-				const tabIndex = `tab-content-${random}-${index}`;
-				el.dataset.tabContent = tabIndex;
-				const active = el.classList.contains('active') ? 'active' : '';
+				const data = `tab-content-${random}-${index}`;
+				el.dataset.tabBtn = data;
+				const content = tabsContent[index];
+				content.dataset.tabContent = data;
+				if (!content.dataset.tabContent == data) return;
+
+				const active = content.classList.contains('active') ? 'active' : '';
 				console.log(tabsBtn[index].innerHTML);
-				el.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary d-block mb-1 ${active}" data-tab-btn="${tabIndex}">${tabsBtn[index].innerHTML}</div>`)
+				content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary d-block mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
 			})
-			document.addEventListener('click', function (element) {
+
+
+			tabs.addEventListener('click', function (element) {
 				const btn = element.target.closest(`[data-tab-btn]:not(.active)`);
 				if (!btn) return;
 				const data = btn.dataset.tabBtn;
-				const tabsAllBtn = btn.closest('.tabs').querySelectorAll(`[data-tab-btn`);
-				const content = btn.closest('.tabs').querySelectorAll(`[data-tab-content]`);
+				const tabsAllBtn = this.querySelectorAll(`[data-tab-btn`);
+				const content = this.querySelectorAll(`[data-tab-content]`);
 				tabsAllBtn.forEach(element => {
 					element.dataset.tabBtn == data
 						? element.classList.add('active')

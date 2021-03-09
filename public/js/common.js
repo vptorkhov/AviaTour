@@ -116,11 +116,7 @@ var JSCCommon = {
 	// /mobileMenu
 	// tabs  .
 	tabscostume: function tabscostume(tab) {
-		var tabs = document.querySelectorAll(".tabs");
-
-		var indexOf = function indexOf(element) {
-			return Array.from(element.parentNode.children).indexOf(element);
-		};
+		var tabs = document.querySelectorAll(tab); // const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
 
 		tabs.forEach(function (element) {
 			var tabs = element;
@@ -130,22 +126,21 @@ var JSCCommon = {
 			var tabsContent = tabsWrap.querySelectorAll(".tabs__content");
 			var random = Math.trunc(Math.random() * 1000);
 			tabsBtn.forEach(function (el, index) {
-				var tabIndex = "tab-content-".concat(random, "-").concat(index);
-				el.dataset.tabBtn = tabIndex;
-			});
-			tabsContent.forEach(function (el, index) {
-				var tabIndex = "tab-content-".concat(random, "-").concat(index);
-				el.dataset.tabContent = tabIndex;
-				var active = el.classList.contains('active') ? 'active' : '';
+				var data = "tab-content-".concat(random, "-").concat(index);
+				el.dataset.tabBtn = data;
+				var content = tabsContent[index];
+				content.dataset.tabContent = data;
+				if (!content.dataset.tabContent == data) return;
+				var active = content.classList.contains('active') ? 'active' : '';
 				console.log(tabsBtn[index].innerHTML);
-				el.insertAdjacentHTML("beforebegin", "<div class=\"tabs__btn-accordion  btn btn-primary d-block mb-1 ".concat(active, "\" data-tab-btn=\"").concat(tabIndex, "\">").concat(tabsBtn[index].innerHTML, "</div>"));
+				content.insertAdjacentHTML("beforebegin", "<div class=\"tabs__btn-accordion  btn btn-primary d-block mb-1 ".concat(active, "\" data-tab-btn=\"").concat(data, "\">").concat(el.innerHTML, "</div>"));
 			});
-			document.addEventListener('click', function (element) {
+			tabs.addEventListener('click', function (element) {
 				var btn = element.target.closest("[data-tab-btn]:not(.active)");
 				if (!btn) return;
 				var data = btn.dataset.tabBtn;
-				var tabsAllBtn = btn.closest('.tabs').querySelectorAll("[data-tab-btn");
-				var content = btn.closest('.tabs').querySelectorAll("[data-tab-content]");
+				var tabsAllBtn = this.querySelectorAll("[data-tab-btn");
+				var content = this.querySelectorAll("[data-tab-content]");
 				tabsAllBtn.forEach(function (element) {
 					element.dataset.tabBtn == data ? element.classList.add('active') : element.classList.remove('active');
 				});
