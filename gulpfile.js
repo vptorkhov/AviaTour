@@ -20,6 +20,10 @@ global.$ = {
 	nested: require('postcss-nested'),
 	plumber: require('gulp-plumber'),
 	webpack: require('webpack-stream'),
+	
+	gulpAvif: require('gulp-avif'),
+	imagemin: require('gulp-imagemin'),
+	imageminAvif: require('imagemin-avif'),
 	path: {
 		tasks: require('./gulp/config/tasks.js'),
 	},

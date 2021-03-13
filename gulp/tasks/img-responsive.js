@@ -3,6 +3,7 @@ module.exports = function () {
 	const sourse2 = $.sourse + '/img';
 	const path = $.public + '/img';
 	let src = sourse2 + "/*.{png,jpg,jpeg,webp,raw}";
+	let src2 = sourse2 + "/*.{png,jpg}";
 
 	// Clean @*x IMG's
 	$.gulp.task('cleanimg', function () {
@@ -21,15 +22,25 @@ module.exports = function () {
 					width: '50%', quality: 75, progressive: true, rename: { prefix: '@1x/', }
 				},
 				{
-					width: '100%', quality: 90, progressive: true, rename: { prefix: '@2x/webp/', extname: '.webp', },
+					width: '100%', quality: 75, progressive: true, rename: { prefix: '@2x/webp/', extname: '.webp', },
 				},
 				{
-					width: '50%', quality: 90, progressive: true, rename: { prefix: '@1x/webp/', extname: '.webp', },
+					width: '50%', quality: 75, progressive: true, rename: { prefix: '@1x/webp/', extname: '.webp', },
 				},
-
+ 
 				]
 			})).on('error', function () { console.log('No matching images found') })
 			.pipe($.gp.rename(function (path) { path.extname = path.extname.replace('jpeg', 'jpg') }))
 			.pipe($.gulp.dest(path))
+
+			
 	});
+ 
+
+
+//  $.gulp.task('avif', ()=>{
+//     return $.gulp.src(path + '/@2x/webp/*.webp')
+//         .pipe($.gulpAvif())
+//         .pipe($.gulp.dest(path + '/@2x/avif/'));
+// });
 }
