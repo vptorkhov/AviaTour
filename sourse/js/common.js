@@ -88,7 +88,8 @@ const JSCCommon = {
 		this.toggleMenu();
 		document.addEventListener('mouseup', (event) => {
 			let container = event.target.closest(".menu-mobile--js.active"); // (1)
-			if (!container) this.closeMenu();
+			let link = event.target.closest(".navMenu__link"); // (1)
+			if (!container || link) this.closeMenu();
 		}, { passive: true });
 
 		window.addEventListener('resize', () => {
