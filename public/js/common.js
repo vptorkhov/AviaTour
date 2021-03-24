@@ -11,7 +11,7 @@ var JSCCommon = {
 	menuMobile: document.querySelector(".menu-mobile--js"),
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
 	modalCall: function modalCall() {
-		$(".link-modal").fancybox({
+		$(".link-modal-js").fancybox({
 			arrows: false,
 			infobar: false,
 			touch: false,
@@ -103,7 +103,9 @@ var JSCCommon = {
 		document.addEventListener('mouseup', function (event) {
 			var container = event.target.closest(".menu-mobile--js.active"); // (1)
 
-			if (!container) _this.closeMenu();
+			var link = event.target.closest(".navMenu__link"); // (1)
+
+			if (!container || link) _this.closeMenu();
 		}, {
 			passive: true
 		});
