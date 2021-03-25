@@ -30,10 +30,9 @@ global.$ = {
     postcssPresetEnv: require('postcss-preset-env'),
     cssnano: require('cssnano'),
     nested: require('postcss-nested'),
-    postcssMerge: require('postcss-merge-selectors'),
-    // cmq: require('postcss-combine-media-query'),
     plumber: require('gulp-plumber'),
     webpack: require('webpack-stream'),
+    resizer: require('gulp-images-resizer'),
     path: {
         tasks: require('./gulp/config/tasks.js'),
     },
