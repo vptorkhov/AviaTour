@@ -468,22 +468,3 @@ iframe {
 		display: none
 	}
 }
-
-
-
-
-img{
-		@include media-breakpoint-up(xl) {
-			margin-bottom: 1100px;
-		}
-
-		@include media-breakpoint-up(lg) {
-			margin-bottom: 10px;
-		}
-
-		@include media-breakpoint-up(md) {}
-
-		@include media-breakpoint-up(sm) {}
-
-		@include media-breakpoint-up(xs) {}
-}
