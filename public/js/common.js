@@ -133,8 +133,8 @@ var JSCCommon = {
 				var content = tabsContent[index];
 				content.dataset.tabContent = data;
 				if (!content.dataset.tabContent == data) return;
-				var active = content.classList.contains('active') ? 'active' : '';
-				console.log(el.innerHTML);
+				var active = content.classList.contains('active') ? 'active' : ''; // console.log(el.innerHTML);
+
 				content.insertAdjacentHTML("beforebegin", "<div class=\"tabs__btn-accordion  btn btn-primary d-block mb-1 ".concat(active, "\" data-tab-btn=\"").concat(data, "\">").concat(el.innerHTML, "</div>"));
 			});
 			tabs.addEventListener('click', function (element) {

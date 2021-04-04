@@ -8,7 +8,7 @@ module.exports = function (){
 		return  	$.gulp.src($.npmDist({ 
 				// copyUnminified: true, 
 				excludes: [
-				'*.map',
+				// '*.map',
 				'src/**/*',
 				'./@babel/*',
 				'animate.css/source/',
@@ -16,6 +16,14 @@ module.exports = function (){
 				'source',
 				'./babel*/*',
 				'./gulp*',
+				'swiper/components',
+				'swiper/angular',
+				'swiper/react',
+				'swiper/svelte',
+				'swiper/cjs',
+				'swiper/bundle',
+				'swiper/vue',
+				'swiper/**/*',
 				'examples',
 				'example',
 				'node_modules',

@@ -117,7 +117,7 @@ const JSCCommon = {
 				if (!content.dataset.tabContent == data) return;
 
 				const active = content.classList.contains('active') ? 'active' : '';
-				console.log(el.innerHTML);
+				// console.log(el.innerHTML);
 				content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary d-block mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
 			})
 
