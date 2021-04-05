@@ -52,8 +52,8 @@ $.gulp.task('default', $.gulp.series('svg', 'svgCopy',
     // $.gulp.parallel('file'),
 
     $.gulp.parallel(
-        'pug',
         'img',
+        'pug',
         'libs',
         'scripts',
         'scripts:common',

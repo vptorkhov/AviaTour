@@ -22,6 +22,7 @@ html {
 html{
 	-webkit-text-size-adjust: 100%;
 	-webkit-tap-highlight-color: rgba(33, 36, 41, 0);
+	margin-right: calc(-1 * (100vw - 100%));
 }
 
 body {
@@ -236,7 +237,10 @@ ul {
 	display: table-cell
 }
 
-
+.tabs__btn-accordion{
+	// display: none;
+	width: 100%;
+}
 .tabs {
 	&__btn {
 		&:hover {
@@ -248,8 +252,11 @@ ul {
 	}
 
 	&__content {
+		opacity: 0;
+		@include mt;
 		&.active {
 			display: block;
+			opacity: 1;
 		}
 
 		display: none;

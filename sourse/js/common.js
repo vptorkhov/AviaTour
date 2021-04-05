@@ -1,4 +1,14 @@
+let div = document.createElement('div');
 
+div.style.overflowY = 'scroll';
+div.style.width = '50px';
+div.style.height = '50px';
+
+// мы должны вставить элемент в документ, иначе размеры будут равны 0
+document.body.append(div);
+
+let scrollWidth = div.offsetWidth - div.clientWidth;
+div.remove();
 const JSCCommon = {
 
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
@@ -28,10 +38,11 @@ const JSCCommon = {
 				},
 			},
 			beforeLoad: function () {
-				document.querySelector("html").classList.add("fixed")
+				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = scrollWidth + 'px';
 			},
 			afterClose: function () {
-				document.querySelector("html").classList.remove("fixed")
+				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = null;
+				// 	document.querySelector("html").classList.remove("fixed")
 			},
 		});
 		$(".modal-close-js").click(function () {
@@ -73,14 +84,18 @@ const JSCCommon = {
 			toggle.forEach(el => el.classList.toggle("on"));
 			menu.classList.toggle("active");
 			[document.body, document.querySelector('html')].forEach(el => el.classList.toggle("fixed"));
-
+			document.querySelector("html").style.marginRight = scrollWidth + 'px';
 		}, { passive: true });
 	},
 	closeMenu() {
-		if (!this.menuMobile) return;
-		this.btnToggleMenuMobile.forEach(element => element.classList.remove("on"));
-		this.menuMobile.classList.remove("active");
-		[document.body, document.querySelector('html')].forEach(el => el.classList.remove("fixed"));
+		let menu = this.menuMobile;
+		if (!menu) return;
+		if (menu.classList.contains("active")) {
+			this.btnToggleMenuMobile.forEach(element => element.classList.remove("on"));
+			this.menuMobile.classList.remove("active");
+			[document.body, document.querySelector('html')].forEach(el => el.classList.remove("fixed"));
+			document.querySelector("html").style.marginRight = null
+		}
 
 	},
 	mobileMenu() {
@@ -118,7 +133,7 @@ const JSCCommon = {
 
 				const active = content.classList.contains('active') ? 'active' : '';
 				// console.log(el.innerHTML);
-				content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary d-block mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
+				content.insertAdjacentHTML("beforebegin", `<div class="tabs__btn-accordion  btn btn-primary  mb-1 ${active}" data-tab-btn="${data}">${el.innerHTML}</div>`)
 			})
 
 

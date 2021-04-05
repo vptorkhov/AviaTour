@@ -11,7 +11,7 @@ module.exports = function () {
 	});
 	$.gulp.task('img-responsive', async function () {
 		return $.gulp.src(src)
-			.pipe($.gp.newer(path + '/@1x'))
+			// .pipe($.gp.newer(path + '/@1x'))
 			.pipe($.responsive({
 				'*': [{
 					// Produce @2x images
@@ -19,7 +19,17 @@ module.exports = function () {
 				},
 				{
 					webp: { quality: 75 }, progressive: true, rename: { prefix: '@2x/webp/', extname: '.webp' },
-				}]
+				},
+					// {
+					// 	// Produce @2x images
+					// 	resize: {width: 0.5},
+					// 	quality: 75, progressive: true, rename: { prefix: '@1x/', },
+					// },
+					// {
+					// 	resize: {width: 0.5},
+					// 	webp: { quality: 75 }, progressive: true, rename: { prefix: '@1x/webp/', extname: '.webp' },
+					// }
+			]
 			}))
 			.on('error', function () { console.log('No matching images found') })
 			.pipe($.gp.rename(function (path) { path.extname = path.extname.replace('jpeg', 'jpg') }))
