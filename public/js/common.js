@@ -6,6 +6,14 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+var div = document.createElement('div');
+div.style.overflowY = 'scroll';
+div.style.width = '50px';
+div.style.height = '50px'; // мы должны вставить элемент в документ, иначе размеры будут равны 0
+
+document.body.append(div);
+var scrollWidth = div.offsetWidth - div.clientWidth;
+div.remove();
 var JSCCommon = {
 	btnToggleMenuMobile: [].slice.call(document.querySelectorAll(".toggle-menu-mobile--js")),
 	menuMobile: document.querySelector(".menu-mobile--js"),
@@ -32,10 +40,10 @@ var JSCCommon = {
 				}
 			},
 			beforeLoad: function beforeLoad() {
-				document.querySelector("html").classList.add("fixed");
+				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = scrollWidth + 'px';
 			},
 			afterClose: function afterClose() {
-				document.querySelector("html").classList.remove("fixed");
+				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = null; // 	document.querySelector("html").classList.remove("fixed")
 			}
 		});
 		$(".modal-close-js").click(function () {
@@ -81,19 +89,25 @@ var JSCCommon = {
 			[document.body, document.querySelector('html')].forEach(function (el) {
 				return el.classList.toggle("fixed");
 			});
+			document.querySelector("html").style.marginRight = scrollWidth + 'px';
 		}, {
 			passive: true
 		});
 	},
 	closeMenu: function closeMenu() {
-		if (!this.menuMobile) return;
-		this.btnToggleMenuMobile.forEach(function (element) {
-			return element.classList.remove("on");
-		});
-		this.menuMobile.classList.remove("active");
-		[document.body, document.querySelector('html')].forEach(function (el) {
-			return el.classList.remove("fixed");
-		});
+		var menu = this.menuMobile;
+		if (!menu) return;
+
+		if (menu.classList.contains("active")) {
+			this.btnToggleMenuMobile.forEach(function (element) {
+				return element.classList.remove("on");
+			});
+			this.menuMobile.classList.remove("active");
+			[document.body, document.querySelector('html')].forEach(function (el) {
+				return el.classList.remove("fixed");
+			});
+			document.querySelector("html").style.marginRight = null;
+		}
 	},
 	mobileMenu: function mobileMenu() {
 		var _this = this;
