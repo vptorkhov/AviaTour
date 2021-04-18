@@ -284,16 +284,21 @@ function eventHandler() {
 		document.body.insertAdjacentHTML("beforeend", "<div class=\"pixel-perfect\" style=\"background-image: url(screen/".concat(screenName, ");\"></div>"));
 	}
 
-	function whenResize() {
+	function setFixedNav() {
 		var topNav = document.querySelector('.top-nav  ');
 		if (!topNav) return;
-		window.addEventListener('scroll', function (e) {
-			this.scrollY > 0 ? topNav.classList.add('fixed') : topNav.classList.remove('fixed');
-		}, {
-			passive: true
-		});
+		window.scrollY > 0 ? topNav.classList.add('fixed') : topNav.classList.remove('fixed');
 	}
 
+	function whenResize() {
+		setFixedNav();
+	}
+
+	window.addEventListener('scroll', function () {
+		setFixedNav();
+	}, {
+		passive: true
+	});
 	window.addEventListener('resize', function () {
 		whenResize();
 	}, {

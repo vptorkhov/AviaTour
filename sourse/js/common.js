@@ -275,21 +275,24 @@ function eventHandler() {
 	}
 
 
-
-	function whenResize() {
+	function setFixedNav() {
 		let topNav = document.querySelector('.top-nav  ');
 		if (!topNav) return;
-		window.addEventListener('scroll', function (e) {
-			this.scrollY > 0
-				? topNav.classList.add('fixed')
-				: topNav.classList.remove('fixed');
-		}, { passive: true })
-
+		window.scrollY > 0
+			? topNav.classList.add('fixed')
+			: topNav.classList.remove('fixed');
 	}
 
+	function whenResize() {
+		setFixedNav();
+	}
+
+	window.addEventListener('scroll', () => {
+		setFixedNav();
+
+	}, { passive: true })
 	window.addEventListener('resize', () => {
 		whenResize();
-
 	}, { passive: true });
 
 	whenResize();
