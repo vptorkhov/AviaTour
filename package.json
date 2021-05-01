@@ -9,8 +9,8 @@
   "author": "Khalunin Pavel",
   "license": "ISC",
   "devDependencies": {
-    "@babel/core": "^7.13.15",
-    "@babel/preset-env": "^7.13.15",
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.0",
     "@popperjs/core": "^2.9.2",
     "@tigersway/gulp-responsive": "^1.5.0",
     "animate.css": "^4.1.1",
@@ -20,7 +20,7 @@
     "babel-plugin-root-import": "^6.6.0",
     "bootstrap": "^5.0.0-beta3",
     "browser-sync": "^2.26.14",
-    "browserslist": "^4.16.4",
+    "browserslist": "^4.16.6",
     "colors": "^1.4.0",
     "cssnano": "^4.1.11",
     "del": "^5.1.0",
@@ -40,7 +40,7 @@
     "gulp-postcss": "^8.0.0",
     "gulp-pug": "^4.0.1",
     "gulp-rename": "^2.0.0",
-    "gulp-replace": "^1.0.0",
+    "gulp-replace": "^1.1.2",
     "gulp-sass": "^4.1.0",
     "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^3.0.0",
@@ -61,6 +61,6 @@
     "inputmask": "^5.0.5",
     "jquery": "^3.5.1",
     "loading-attribute-polyfill": "^1.5.4",
-    "swiper": "^6.5.7"
+    "swiper": "^6.5.9"
   }
 }
