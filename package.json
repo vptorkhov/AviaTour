@@ -10,7 +10,7 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-env": "^7.14.1",
     "@popperjs/core": "^2.9.2",
     "@tigersway/gulp-responsive": "^1.5.0",
     "animate.css": "^4.1.1",
