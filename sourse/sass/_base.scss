@@ -26,6 +26,13 @@ html{
 }
 
 body {
+	&.fixed,
+	&.fancybox-active{
+		.header{ 
+			padding-right: var(--spacing-end);
+		}
+		margin-right: var(--spacing-end);
+	}
 	// min-width: 320px; 
 	-webkit-font-smoothing: antialiased;
 	position: relative;

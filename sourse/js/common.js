@@ -8,6 +8,8 @@ div.style.height = '50px';
 document.body.append(div);
 
 let scrollWidth = div.offsetWidth - div.clientWidth;
+let root = document.documentElement;
+root.style.setProperty('--spacing-end', scrollWidth + 'px');
 div.remove();
 const JSCCommon = {
 
@@ -37,13 +39,12 @@ const JSCCommon = {
 					// ZOOM: "Zoom"
 				},
 			},
-			beforeLoad: function () {
-				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = scrollWidth + 'px';
-			},
-			afterClose: function () {
-				if (!document.querySelector("html").classList.contains(".fixed")) document.querySelector("html").style.marginRight = null;
-				// 	document.querySelector("html").classList.remove("fixed")
-			},
+			// beforeLoad: function () {
+			// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
+			// },
+			// afterClose: function () {
+			// 	root.style.setProperty('--spacing-end', null);
+			// },
 		});
 		$(".modal-close-js").click(function () {
 			$.fancybox.close();
@@ -83,8 +84,7 @@ const JSCCommon = {
 			if (!toggleEv) return;
 			toggle.forEach(el => el.classList.toggle("on"));
 			menu.classList.toggle("active");
-			[document.body, document.querySelector('html')].forEach(el => el.classList.toggle("fixed"));
-			document.querySelector("html").style.marginRight = scrollWidth + 'px';
+			[document.body, document.querySelector('html')].forEach(el => el.classList.toggle("fixed")); 
 		}, { passive: true });
 	},
 	closeMenu() {
@@ -93,8 +93,7 @@ const JSCCommon = {
 		if (menu.classList.contains("active")) {
 			this.btnToggleMenuMobile.forEach(element => element.classList.remove("on"));
 			this.menuMobile.classList.remove("active");
-			[document.body, document.querySelector('html')].forEach(el => el.classList.remove("fixed"));
-			document.querySelector("html").style.marginRight = null
+			[document.body, document.querySelector('html')].forEach(el => el.classList.remove("fixed")); 
 		}
 
 	},
