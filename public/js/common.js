@@ -112,7 +112,7 @@ const JSCCommon = {
 		document.addEventListener('mouseup', event => {
 			let container = event.target.closest(".menu-mobile--js.active"); // (1)
 
-			let link = event.target.closest(".navMenu__link"); // (1)
+			let link = event.target.closest(".menu as"); // (1)
 
 			if (!container || link) this.closeMenu();
 		}, {
@@ -246,13 +246,18 @@ const JSCCommon = {
 	},
 
 	animateScroll() {
-		$(document).on('click', " .top-nav li a, .scroll-link", function () {
+		$(document).on('click', " .menu li a, .scroll-link", function () {
 			const elementClick = $(this).attr("href");
-			const destination = $(elementClick).offset().top;
-			$('html, body').animate({
-				scrollTop: destination
-			}, 1100);
-			return false;
+
+			if (!document.querySelector(elementClick)) {
+				$(this).attr("href", '/' + elementClick);
+			} else {
+				let destination = $(elementClick).offset().top;
+				$('html, body').animate({
+					scrollTop: destination - 80
+				}, 0);
+				return false;
+			}
 		});
 	},
 
