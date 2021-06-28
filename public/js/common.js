@@ -216,11 +216,11 @@ const JSCCommon = {
 				type: 'POST',
 				data: data
 			}).done(function (data) {
-				$.fancybox.close();
-				$.fancybox.open({
-					src: '#modal-thanks',
-					type: 'inline'
-				}); // window.location.replace("/thanks.html");
+				fancybox.close();
+				Fancybox.show([{
+					src: "#modal-thanks",
+					type: "inline"
+				}]); // window.location.replace("/thanks.html");
 
 				setTimeout(function () {
 					// Done Functions
