@@ -23,25 +23,23 @@ const JSCCommon = {
 
 	modalCall() {
 		const link = ".link-modal-js";
-		$(link).fancybox({
+		Fancybox.bind(link, {
 			arrows: false,
 			infobar: false,
 			touch: false,
 			type: 'inline',
 			autoFocus: false,
-			i18n: {
-				en: {
-					CLOSE: "Закрыть",
-					NEXT: "Вперед",
-					PREV: "Назад" // PLAY_START: "Start slideshow",
-					// PLAY_STOP: "Pause slideshow",
-					// FULL_SCREEN: "Full screen",
-					// THUMBS: "Thumbnails",
-					// DOWNLOAD: "Download",
-					// SHARE: "Share",
-					// ZOOM: "Zoom"
+			keyboard: {
+				CLOSE: "Закрыть",
+				NEXT: "Вперед",
+				PREV: "Назад" // PLAY_START: "Start slideshow",
+				// PLAY_STOP: "Pause slideshow",
+				// FULL_SCREEN: "Full screen",
+				// THUMBS: "Thumbnails",
+				// DOWNLOAD: "Download",
+				// SHARE: "Share",
+				// ZOOM: "Zoom"
 
-				}
 			} // beforeLoad: function () {
 			// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
 			// },
@@ -49,11 +47,13 @@ const JSCCommon = {
 			// 	root.style.setProperty('--spacing-end', null);
 			// },
 
-		});
+		}); // $(link).fancybox({
+		// });
+
 		$(".modal-close-js").click(function () {
-			$.fancybox.close();
-		});
-		$.fancybox.defaults.backFocus = false;
+			fancybox.close();
+		}); // fancybox.defaults.backFocus = false;
+
 		const linkModal = document.querySelectorAll(link);
 
 		function addData() {
@@ -112,7 +112,7 @@ const JSCCommon = {
 		document.addEventListener('mouseup', event => {
 			let container = event.target.closest(".menu-mobile--js.active"); // (1)
 
-			let link = event.target.closest(".menu as"); // (1)
+			let link = event.target.closest(".menu-mobile .menu a"); // (1)
 
 			if (!container || link) this.closeMenu();
 		}, {
@@ -128,7 +128,9 @@ const JSCCommon = {
 	// /mobileMenu
 	// tabs  .
 	tabscostume(tab) {
-		const tabs = document.querySelectorAll(tab); // const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+		const tabs = document.querySelectorAll(tab);
+
+		const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
 
 		tabs.forEach(element => {
 			let tabs = element;

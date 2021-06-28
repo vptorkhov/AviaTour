@@ -19,37 +19,41 @@ const JSCCommon = {
 
 	modalCall() {
 		const link = ".link-modal-js";
-		$(link).fancybox({
-			arrows: false,
-			infobar: false,
-			touch: false,
-			type: 'inline',
-			autoFocus: false,
-			i18n: {
-				en: {
-					CLOSE: "Закрыть",
-					NEXT: "Вперед",
-					PREV: "Назад",
-					// PLAY_START: "Start slideshow",
-					// PLAY_STOP: "Pause slideshow",
-					// FULL_SCREEN: "Full screen",
-					// THUMBS: "Thumbnails",
-					// DOWNLOAD: "Download",
-					// SHARE: "Share",
-					// ZOOM: "Zoom"
-				},
-			},
-			// beforeLoad: function () {
-			// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
-			// },
-			// afterClose: function () {
-			// 	root.style.setProperty('--spacing-end', null);
-			// },
+
+		Fancybox.bind(link , {
+				arrows: false,
+				infobar: false,
+				touch: false,
+				type: 'inline',
+				autoFocus: false,
+				keyboard: {
+						CLOSE: "Закрыть",
+						NEXT: "Вперед",
+						PREV: "Назад",
+						// PLAY_START: "Start slideshow",
+						// PLAY_STOP: "Pause slideshow",
+						// FULL_SCREEN: "Full screen",
+						// THUMBS: "Thumbnails",
+						// DOWNLOAD: "Download",
+						// SHARE: "Share",
+						// ZOOM: "Zoom"
+					}, 
+				// beforeLoad: function () {
+				// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
+				// },
+				// afterClose: function () {
+				// 	root.style.setProperty('--spacing-end', null);
+				// },
+
 		});
+
+		// $(link).fancybox({
+		// });
+
 		$(".modal-close-js").click(function () {
-			$.fancybox.close();
+			fancybox.close();
 		})
-		$.fancybox.defaults.backFocus = false;
+		// fancybox.defaults.backFocus = false;
 		const linkModal = document.querySelectorAll(link);
 		function addData() {
 			linkModal.forEach(element => {
@@ -102,7 +106,7 @@ const JSCCommon = {
 		this.toggleMenu();
 		document.addEventListener('mouseup', (event) => {
 			let container = event.target.closest(".menu-mobile--js.active"); // (1)
-			let link = event.target.closest(".menu as"); // (1)
+			let link = event.target.closest(".menu-mobile .menu a"); // (1)
 			if (!container || link) this.closeMenu();
 		}, { passive: true });
 
@@ -115,7 +119,7 @@ const JSCCommon = {
 	// tabs  .
 	tabscostume(tab) {
 		const tabs = document.querySelectorAll(tab);
-		// const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
+		const indexOf = element => Array.from(element.parentNode.children).indexOf(element);
 		tabs.forEach(element => {
 			let tabs = element;
 			const tabsCaption = tabs.querySelector(".tabs__caption");
