@@ -266,7 +266,7 @@ function eventHandler() {
 	JSCCommon.inputMask();
 	JSCCommon.sendForm();
 	JSCCommon.heightwindow();
-	JSCCommon.animateScroll();
+	// JSCCommon.animateScroll();
 
 	// JSCCommon.CustomInputFile(); 
 	var x = window.location.host;
