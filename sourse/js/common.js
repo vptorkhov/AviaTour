@@ -18,32 +18,34 @@ const JSCCommon = {
 	menuMobileLink: [].slice.call(document.querySelectorAll(".menu-mobile--js ul li a")),
 
 	modalCall() {
-		const link = ".link-modal-js";
+		const link = "[data-fancybox]";
 
-		Fancybox.bind(link , {
-				arrows: false,
-				infobar: false,
-				touch: false,
-				type: 'inline',
-				autoFocus: false,
-				keyboard: {
-						CLOSE: "Закрыть",
-						NEXT: "Вперед",
-						PREV: "Назад",
-						// PLAY_START: "Start slideshow",
-						// PLAY_STOP: "Pause slideshow",
-						// FULL_SCREEN: "Full screen",
-						// THUMBS: "Thumbnails",
-						// DOWNLOAD: "Download",
-						// SHARE: "Share",
-						// ZOOM: "Zoom"
-					}, 
-				// beforeLoad: function () {
-				// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
-				// },
-				// afterClose: function () {
-				// 	root.style.setProperty('--spacing-end', null);
-				// },
+		Fancybox.bind(link, {
+			arrows: false,
+			infobar: false,
+			touch: false,
+			infinite: false,
+			dragToClose: false,
+			type: 'inline',
+			autoFocus: false,
+			l10n: {
+				Escape: "Закрыть",
+				NEXT: "Вперед",
+				PREV: "Назад",
+				// PLAY_START: "Start slideshow",
+				// PLAY_STOP: "Pause slideshow",
+				// FULL_SCREEN: "Full screen",
+				// THUMBS: "Thumbnails",
+				// DOWNLOAD: "Download",
+				// SHARE: "Share",
+				// ZOOM: "Zoom"
+			},
+			// beforeLoad: function () {
+			// 	root.style.setProperty('--spacing-end', scrollWidth + 'px');
+			// },
+			// afterClose: function () {
+			// 	root.style.setProperty('--spacing-end', null);
+			// },
 
 		});
 
@@ -254,20 +256,41 @@ const JSCCommon = {
 		let now = new Date();
 		let currentYear = document.querySelector(el);
 		if (currentYear) currentYear.innerText = now.getFullYear();
+	},
+	toggleShow(toggle, drop) {
+
+		let catalogDrop = drop;
+		let catalogToggle = toggle;
+
+		$(document).on('click', catalogToggle, function () {
+			$(this).toggleClass('active').next().fadeToggle('fast', function () {
+				$(this).toggleClass("active")
+			});
+		})
+
+		document.addEventListener('mouseup', (event) => {
+			let container = event.target.closest(catalogDrop + ".active"); // (1)
+			let link = event.target.closest(catalogToggle); // (1)
+			if (!container || !catalogToggle) {
+				$(catalogDrop).removeClass('active').fadeOut();
+				$(catalogToggle).removeClass('active');
+			};
+		}, { passive: true });
 	}
 };
 const $ = jQuery;
 
 function eventHandler() {
-	JSCCommon.ifie();
-	JSCCommon.modalCall();
-	JSCCommon.tabscostume('.tabs--js');
-	JSCCommon.mobileMenu();
-	JSCCommon.inputMask();
-	JSCCommon.sendForm();
-	JSCCommon.heightwindow();
+	// JSCCommon.ifie();
+	// JSCCommon.modalCall();
+	// JSCCommon.tabscostume('.tabs--js');
+	// JSCCommon.mobileMenu();
+	// JSCCommon.inputMask();
+	// JSCCommon.sendForm();
+	// JSCCommon.heightwindow();
+	// JSCCommon.toggleShow(".catalog-block__toggle--desctop", '.catalog-block__dropdown');
 	// JSCCommon.animateScroll();
-
+	
 	// JSCCommon.CustomInputFile(); 
 	var x = window.location.host;
 	let screenName;
