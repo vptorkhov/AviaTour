@@ -1,0 +1,29 @@
+extends layout/main.pug
+include ../blocks/sCatalog/_sCatalog.pug
+include ../blocks/header/_header.pug
+include ../blocks/sLongMenu/_sLongMenu.pug
+include ../blocks/sPicsInfo/_sPicsInfo.pug
+include ../blocks/sInfo2/_sInfo2.pug
+block variables
+	- let  mainPage= null 
+	- let  bg= null
+
+block title
+	- let  title= 'Отель+Перелет'
+	title= title
+block pagecontent
+	//+mob-mnu()
+	.container-fluid.pb-lg-5#Menu(style="background-color:#008ece;")
+		+navbar
+		.container
+			+sLongMenu(2)
+		.MenuForm
+			+MenuForm4
+	.container.my-5
+		.row.d-flex.flex-lg-row.flex-column.justify-content-center.align-items.center
+			+sPicsInfo(1,'Поддержка 24/7',"Наша служба заботы поможет забронировать отель онлайн. Если у вас возник вопрос в поездке или при заселении, оператор будет круглосуточно на связи и найдет решение в кратчайший срок")
+			+sPicsInfo(2,'Экономия до 40%',"Благодаря специальным пакетным тарифам от авиакомпаний и отелей, вы получаете более выгодную стоимость. Также в процессе бронирования вы сможете добавить страховку и трансфер по более низкой цене")
+			+sPicsInfo(4,'Тур в любую точку мира',"На нашем сайте вы можете выбрать тур из любого аэропорта в любую точку мира. Вам доступно множество авиакомпаний, а также более 1 000 000 отелей, хостелов, апартаментов и вилл по всему миру")
+	+sCatalog("Авиаскидки",5,3)
+	+sInfo2('Подбор и бронирование туров онлайн','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac faucibus erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse facilisis ornare dui, at faucibus tellus fermentum at. Aliquam sit amet faucibus nibh. Donec mauris ex, placerat vitae eleifend aliquet, auctor a elit. Vestibulum sapien lorem, rhoncus ut facilisis vel, porta sit amet velit. Integer placerat mauris ut nisl mattis mattis. Etiam vestibulum nisl sed libero tincidunt, sit amet iaculis erat vestibulum. Nullam eget leo vitae elit accumsan lobortis vel auctor nisi.')
+	+footer

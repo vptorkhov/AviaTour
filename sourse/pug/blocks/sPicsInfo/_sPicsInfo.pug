@@ -1,0 +1,7 @@
+mixin sPicsInfo(n,h6,p)
+	- var src_var ="img/pics/pics"+n+".png"
+	.col-lg-4.d-flex.col-12.sPicsInfo
+		img.me-2(src=src_var style="height:80px; width:80px;")
+		.d-flex.flex-column.w-75
+			h6=h6
+			p=p

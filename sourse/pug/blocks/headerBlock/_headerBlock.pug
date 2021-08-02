@@ -1,10 +1,16 @@
 mixin headerBlock()
-	// start headerBlock
-	+b.headerBlock.section#headerBlock&attributes(attributes)
-		.container
-			+b.section-title.text-center
-				h2 headerBlock ds dfsdfdsfsd
-
-			.row
-						
+	#carouselControls(class="carousel slide container-lg mt-lg-5 px-lg-5" data-bs-ride="carousel")
+		.carousel-inner.px-lg-5
+			.carousel-item.active
+				img(src="img/carousel1.jpg" class="d-block w-100 mx-auto" alt="...")
+			.carousel-item
+				img(src="img/carousel2.jpg" class="d-block w-100 mx-auto" alt="...")
+			.carousel-item
+				img(src="img/carousel3.jpg" class="d-block w-100 mx-auto" alt="...")
+		button(class="carousel-control-prev ms-lg-5" type="button" data-bs-target="#carouselControls" data-bs-slide="prev")
+			span(class="carousel-control-prev-icon" aria-hidden="true")
+			span(class="visually-hidden")="Previous"
+		button(class="carousel-control-next me-lg-5" type="button" data-bs-target="#carouselControls" data-bs-slide="next")
+			span(class="carousel-control-next-icon" aria-hidden="true")
+			span(class="visually-hidden")="Next"
 	// end headerBlock

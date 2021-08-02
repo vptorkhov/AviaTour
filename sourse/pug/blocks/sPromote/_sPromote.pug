@@ -1,0 +1,11 @@
+mixin Promote(h,n,text)
+  - var way1='img/promotions/promotions'
+  - var way2='.jpg'
+  - var way3=way1+n+way2
+  .d-flex.flex-column.mt-5.promotions(style="border-bottom:2px solid #eaeaea")
+    a(href="#" style="text-decoration:none;color:black;")
+      h5.mb-4=h
+    .d-flex.pb-3.flex-md-row.flex-column.promcont
+      a.me-md-5(href="#")
+        img.rounded-3(src=way3 alt="...")
+      p.d-flex.align-items-center=text

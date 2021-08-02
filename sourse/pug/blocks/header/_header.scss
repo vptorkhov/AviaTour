@@ -1,12 +1,29 @@
 
 	// start .header
-	.header {
-		 
+	#MenuTab {
+	align-items: start;
+	a{
+			color:white;
+		}
+	
+	
 	@include media-breakpoint-up(xl) {}
-	@include media-breakpoint-up(lg) {}
-	@include media-breakpoint-up(md) {}
+	@include media-breakpoint-up(lg) {
+		margin-top: 50px;
+		width:100%;
+	}
+	@include media-breakpoint-up(md) {
+		a{
+			font-size:16px;
+		}
+	}
 	@include media-breakpoint-up(sm) {}
-	@include media-breakpoint-up(xs) {}
+	@include media-breakpoint-up(xs) {
+		a{
+			font-size:13px;
+			padding:0.3rem;
+		}
+	}
 	
 	//
 	@include media-breakpoint-between(md, xl) { }
@@ -21,9 +38,49 @@
 	
 	//
 	@include media-breakpoint-down(xl) {}
-	@include media-breakpoint-down(lg) {}
+	@include media-breakpoint-down(lg) {
+}
 	@include media-breakpoint-down(md) {}
 	@include media-breakpoint-down(sm) {}
 	@include media-breakpoint-down(xs) {} 
 
 } // end.header
+.MenuForm{
+	select, input{
+		border-radius: 0;
+	}	
+}
+#MenuForm1, #MenuForm2{
+	select, input{
+		border-radius: 0;
+	}	
+	@include media-breakpoint-up(xs) {display:none;}
+}
+#MenuForm1{
+	@include media-breakpoint-up(lg) {
+		display:flex;
+	}
+}
+#MenuBtn1,#MenuBtn2{
+	@include media-breakpoint-up(xs) { 
+		border-bottom: 0px solid yellow;
+	}
+}
+#MenuBtn1{
+	@include media-breakpoint-up(lg){
+		border-bottom: 4px solid yellow;
+	}
+}
+label{
+	background-color: white;
+	border:1px solid #ced4da;
+}
+#date{
+	border:0px;
+}
+#Menu6{
+	@include media-breakpoint-up(lg){
+		width:50%;
+		margin:0;
+	}
+}

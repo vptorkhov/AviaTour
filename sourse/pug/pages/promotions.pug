@@ -1,0 +1,23 @@
+extends layout/main.pug
+include ../blocks/sCatalog/_sCatalog.pug
+include ../blocks/sPromote/_sPromote.pug
+block variables
+	- let  mainPage= null 
+	- let  bg= null
+
+block title
+	- let  title= 'Акции и спецпредложения'
+	title= title
+block pagecontent
+	//+mob-mnu()
+	.container-fluid.pb-lg-5#Menu(style="background-color:#008ece;")
+		+navbar
+	h2.text-center.mt-4=title
+	.container.d-flex.flex-column
+		+Promote('Отдых без сомнений',1,'Всего 10% оплаты за тур')
+		+Promote('ATLANTICA HOTELS & RESORTS',2,'Эксклюзивный отдых в Греции')
+		+Promote('Турция',3,'Скидки до 70%')
+		+Promote('Греция',4,'Скидки до 50%')
+		+Promote('Мальдивы',5,'Скидки до 50%')
+		+Promote('Кипр',6,'Скидки до 50%')
+	+footer()

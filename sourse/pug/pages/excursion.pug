@@ -1,0 +1,27 @@
+extends layout/main.pug
+include ../blocks/sCatalog/_sCatalog.pug
+include ../blocks/header/_header.pug
+include ../blocks/sLongMenu/_sLongMenu.pug
+include ../blocks/sPicsInfo/_sPicsInfo.pug
+block variables
+	- let  mainPage= null 
+	- let  bg= null
+
+block title
+	- let  title= 'Экскурсии'
+	title= title
+block pagecontent
+	//+mob-mnu()
+	.container-fluid.pb-lg-5#Menu(style="background-color:#008ece;")
+		+navbar
+		.container
+			+sLongMenu(5)
+			.MenuForm#MenuForm6
+				+MenuForm6
+	.container.my-5
+		.row.d-flex.flex-lg-row.flex-column.justify-content-center.align-items.center
+			+sPicsInfo(2,'Низкие цены','Благодаря собственным экскурсионным программам, у нас можно купить экскурсии онлайн по наиболее выгодным ценам')
+			+sPicsInfo(1,'Служба заботы 24/7','Наша служба заботы поможет с бронированием экскурсий онлайн. Если у вас возник вопрос или трудности, оператор будет круглосуточно на связи и найдёт решение в кратчайший срок')
+			+sPicsInfo(3,'Качество и надежность','AviaTour предлагает только гарантированные русскоязычные экскурсии с сертифицированными гидами. За 25 лет нашей работы нашими услугами воспользовались более 10 миллионов туристов')
+	+sCatalog("Популярные направления",6,3)
+	+footer

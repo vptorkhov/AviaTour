@@ -1,0 +1,50 @@
+mixin sLongMenu(n)
+	h2.text-lg-start.text-center.text-white.mt-5="Бронируйте туры онлайн"
+	ul.nav.container-lg.d-flex.flex-row.flex-lg-row.mb-lg-2#LongMenu
+		.row.text-center
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==1 
+					a.nav-link.active(aria-current="page" href="#" style="border-bottom:4px solid yellow;")="Туры"
+				else
+					a.nav-link.active(aria-current="page" href="podbor_tura.html" target="_blank")="Туры"					
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==2 
+					a.nav-link.active(aria-current="page" href="#" style="border-bottom:4px solid yellow;")="Отель+Перелет"
+				else
+					a.nav-link.active(aria-current="page" href="hotel_avia.html" target="_blank")="Отель+Перелет"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==3
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Отели"
+				else	
+					a.nav-link.active(aria-current="page" target="_blank" href="hotel.html")="Отели"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==4
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Авиабилеты"
+				else	
+					a.nav-link.active(aria-current="page" target="_blank" href="flight.html")="Авиабилеты"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==5
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Экскурсии"
+				else
+					a.nav-link.active(aria-current="page" target="_blank" href="excursion.html")="Экскурсии"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==6
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Трансферы"
+				else
+					a.nav-link.active(aria-current="page" target="_blank" href="#")="Трансферы"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==7
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Аренда авто"
+				else	
+					a.nav-link.active(aria-current="page" target="_blank" href="#")="Аренда авто"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==8
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Распродажи"
+				else
+					a.nav-link.active(aria-current="page" target="_blank" href="#")="Распродажи"
+			li.nav-item.col-lg-auto.col-4.px-0
+				if n==9
+					a.nav-link.active(aria-current="page" style="border-bottom:4px solid yellow;" href="#")="Оставить заявку"
+				else
+					a.nav-link.active(aria-current="page" target="_blank" href="#")="Оставить заявку"
+	// end sLongMenu

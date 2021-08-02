@@ -1,0 +1,62 @@
+mixin navbar(data)
+	// start navbar
+	nav.navbar.navbar-expand-lg.navbar-dark(style="background-color:#008ece;")
+		.container-lg
+			a.navbar-brand(href="index.html")="AviaTour"
+			button.navbar-toggler(type="button" data-bs-toggle="collapse" data-bs-target=".Nav_Avia" aria-controls="Nav_Avia" aria-expanded="false" aria-label="Toggle navigation")
+				span.navbar-toggler-icon
+			.collapse.navbar-collapse.Nav_Avia
+				ul.navbar-nav.me-auto.mb-2.mb-lg-0.mt-lg-1
+					li.nav-item
+						a.nav-link.active(href="index.html")="Главная"
+					li.nav-item.dropdown
+						a.nav-link.active.dropdown-toggle#ForTourist(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")="Туристам"
+						ul.dropdown-menu(aria-labelledby="ForTourist")
+							li
+								a.dropdown-item(href="podbor_tura.html")="Подбор тура"
+							li
+								a.dropdown-item(href="promotions.html")="Акции и предложения"
+							li
+								a.dropdown-item(href="beach.html")="Типы отдыха"
+							li
+								a.dropdown-item(href="catalog.html")="Каталог отелей"
+							li
+								a.dropdown-item(href="flight.html")="Авиаперелеты"
+							li
+								a.dropdown-item(href="#")="Визы и паспорта"
+							li
+								a.dropdown-item(href="#")="Памятка туриста"
+							li
+								a.dropdown-item(href="#")="Выдача документов"
+							li
+								a.dropdown-item(href="#")="Новости"
+							li
+								a.dropdown-item(href="#")="Купить тур онлайн"
+							li
+								a.dropdown-item(href="#")="Отзывы и предложения"
+					li.nav-item.dropdown
+						a.nav-link.active.dropdown-toggle#ForAgency(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")="Агентствам"
+						ul.dropdown-menu(aria-labelledby="ForAgency")
+							li
+								a.dropdown-item(href="#")="Агентская страница"
+							li
+								a.dropdown-item(href="#")="Кабинет агентства"
+							li
+								a.dropdown-item(href="#")="Сотрудничество"
+							li
+								a.dropdown-item(href="#")="Франчайзинг"
+							li
+								a.dropdown-item(href="#")="Выдача документов"
+							li
+								a.dropdown-item(href="#")="Вопросы и ответы"
+					li.nav-item.dropdown
+						a.nav-link.active.dropdown-toggle#BuyPlace(href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false")="Где купить"
+						ul.dropdown-menu(aria-labelledby="BuyPlace")
+							li
+								a.dropdown-item(href="#")="Купить онлайн"
+							li
+								a.dropdown-item(href="#")="Купить в агентстве"
+				form.d-flex
+					input.form-control.me-2(type="search" placeholder="Поиск" aria-label="Search")
+					button.btn.btn-warning(type="submit")="Найти"
+	// end navbar

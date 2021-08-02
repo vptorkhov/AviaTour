@@ -1,5 +1,144 @@
 mixin header()
-	// start header
-	+b.HEADER.header#header&attributes(attributes)
-		block
+	ul.nav.container-lg.d-flex.flex-row.flex-lg-row.mb-lg-2#MenuTab
+		li.px-lg-2.px-1.nav-item
+			a.nav-link.active#MenuBtn1(aria-current="page" onclick="document.getElementById('MenuForm1').style.display='flex'; document.getElementById('MenuForm2').style.display='none'; document.getElementById('MenuBtn1').style.borderBottom='4px solid yellow'; document.getElementById('MenuBtn2').style.borderBottom='0px solid yellow';" href="#")="Подбор тура"
+		li.px-lg-2.px-1.nav-item
+			a.nav-link.active#MenuBtn2(aria-current="page" onclick="document.getElementById('MenuForm1').style.display='none'; document.getElementById('MenuForm2').style.display='flex'; document.getElementById('MenuBtn2').style.borderBottom='4px solid yellow'; document.getElementById('MenuBtn1').style.borderBottom='0px solid yellow';" href="#")="Отели"
+		li.px-lg-2.px-1.nav-item
+			a.nav-link.active(aria-current="page" target="_blank" href="flight.html")="Билеты"
+		li.px-lg-2.px-1.nav-item
+			a.nav-link.active(aria-current="page" href="#")="Экскурсии"
+	#MenuForm1.MenuForm
+		+MenuForm1
+	#MenuForm2.MenuForm
+		+MenuForm2
 	// end header
+
+mixin select_n($n)
+	- var a=1; 
+	while a<=$n
+		option(value=a)=a++
+
+mixin MenuForm1()
+	form.container-lg.d-flex.flex-lg-row.flex-column.mt-2.mb-4.mb-lg-0#Menu1
+		select.form-select#Select1.my-1.my-lg-0(aria-label="Select1")
+			option(selected)="Город вылета:"
+			optgroup(label="Россия")
+				option(value="Moscow")="Москва"
+				option(value="Spb")="Санкт-Петербург"
+				option(value="Kazan")="Казань"
+				option(value="Novosibirsk")="Новосибирск"
+				option(value="Volgograd")="Волгоград"
+				option(value="Krasnodar")="Краснодар"
+				option(value="NNovgorod")="Нижний Новгород"
+			optgroup(label="Беларусь")
+				option(value="Minsk")="Минск"
+				option(value="Vitebsk")="Витебск"
+		select.form-select.my-1.my-lg-0(aria-label="Select2")
+			option(selected)="Страна:"
+			option(value="USA")="США"
+			option(value="Turkey")="Турция"
+			option(value="UAE")="ОАЭ"
+			option(value="Tunisia")="Тунис"
+			option(value="Russia")="Россия"
+			option(value="Italy")="Италия"
+			option(value="Egypt")="Египет"
+			option(value="Montenegro")="Черногория"
+			option(value="Greece")="Греция"
+			option(value="Maldives")="Мальдивы"
+		select.form-select.my-1.my-lg-0(aria-label="Select3")
+			option(selected)="Ночей:"
+			+select_n(30)
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество взрослых:")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество детей:")
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")
+
+mixin MenuForm2()
+	form.container-lg.d-flex.flex-lg-row.mt-2.flex-column.mb-4.mb-lg-0#Menu2
+		select.form-select.my-1.my-lg-0#Select4(aria-label="Select4")
+			option(selected)="Страна:"
+			option(value="USA")="США"
+			option(value="Turkey")="Турция"
+			option(value="UAE")="ОАЭ"
+			option(value="Tunisia")="Тунис"
+			option(value="Russia")="Россия"
+			option(value="Italy")="Италия"
+			option(value="Egypt")="Египет"
+			option(value="Montenegro")="Черногория"
+			option(value="Greece")="Греция"
+			option(value="Maldives")="Мальдивы"
+		select.form-select.my-1.my-lg-0(aria-label="Select5")
+			option(selected)="Уровень отеля (и лучше):"
+			option(value="Star1")="1★"
+			option(value="Star2")="2★"
+			option(value="Star3")="3★"
+			option(value="Star4")="4★"
+			option(value="Star5")="5★"
+		select.form-select.my-1.my-lg-0(aria-label="Select6")
+			option(selected)="Пансион:"
+			option(value="RO")="RO"
+			option(value="BB")="BB"
+			option(value="HB")="HB"
+			option(value="FB")="FB"
+			option(value="AI")="AI"
+			option(value="UAI")="UAI"
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")
+
+mixin MenuForm3()
+	form.container-lg.d-flex.flex-lg-row.flex-column.mt-2.mb-4.mb-lg-0#Menu3
+		select.form-select#Select1.my-1.my-lg-0(aria-label="Select1")
+			option(selected)="Город вылета:"
+			optgroup(label="Россия")
+				option(value="Moscow")="Москва"
+				option(value="Spb")="Санкт-Петербург"
+				option(value="Kazan")="Казань"
+				option(value="Novosibirsk")="Новосибирск"
+				option(value="Volgograd")="Волгоград"
+				option(value="Krasnodar")="Краснодар"
+				option(value="NNovgorod")="Нижний Новгород"
+			optgroup(label="Беларусь")
+				option(value="Minsk")="Минск"
+				option(value="Vitebsk")="Витебск"
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Куда:")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество взрослых:")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество детей:")
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")
+
+mixin MenuForm4()
+	form.container-lg.d-flex.flex-lg-row.flex-column.mt-2.mb-4.mb-lg-0#Menu4
+		select.form-select#Select1.my-1.my-lg-0(aria-label="Select1")
+			option(selected)="Город вылета:"
+			optgroup(label="Россия")
+				option(value="Moscow")="Москва"
+				option(value="Spb")="Санкт-Петербург"
+				option(value="Kazan")="Казань"
+				option(value="Novosibirsk")="Новосибирск"
+				option(value="Volgograd")="Волгоград"
+				option(value="Krasnodar")="Краснодар"
+				option(value="NNovgorod")="Нижний Новгород"
+			optgroup(label="Беларусь")
+				option(value="Minsk")="Минск"
+				option(value="Vitebsk")="Витебск"
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Куда:")
+		select.form-select.my-1.my-lg-0(aria-label="Select3")
+			option(selected)="Ночей:"
+			+select_n(30)
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество взрослых:")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество детей:")
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")
+
+mixin MenuForm5()
+	form.container-lg.d-flex.flex-lg-row.flex-column.mt-2.mb-4.mb-lg-0#Menu5
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Куда:")
+		label(for="date")="Когда:"
+			input.form-control.my-1.my-lg-0#date(type="date")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество взрослых:")
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Количество детей:")
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")
+
+mixin MenuForm6()
+	form.container-lg.d-flex.flex-lg-row.flex-column.mt-2.mb-4.mb-lg-0#Menu6
+		input.form-control.my-1.my-lg-0(type="text" placeholder="Куда:")
+		label(for="date")="Когда:"
+			input.form-control.my-1.my-lg-0#date(type="date")
+		input.btn.btn-warning.my-1.my-lg-0(type="submit" value="Найти")

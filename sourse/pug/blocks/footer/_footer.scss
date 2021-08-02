@@ -1,17 +1,35 @@
-.footer {
+footer {
 		
-	margin-top: auto;
-
 // 
 @include media-breakpoint-up(xl) {}
 
-@include media-breakpoint-up(lg) {}
+@include media-breakpoint-up(lg) {
+		text-align:start;
+    ul{
+      display:block;
+    }
+}
 
 @include media-breakpoint-up(md) {}
 
 @include media-breakpoint-up(sm) {}
 
-@include media-breakpoint-up(xs) {}
+@include media-breakpoint-up(xs) {
+	li{
+		margin-top:5px;
+	}
+	a{
+		font-size: 13px;
+	}
+	.foot_a_H{
+		text-decoration: none;
+		color:black;
+	}
+	text-align:center;
+	ul{
+		display: none;
+	}
+}
 
 
 // 

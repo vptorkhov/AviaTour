@@ -1,0 +1,21 @@
+mixin sCatalog(h2,n,m,b)
+	// start sCatalog
+	- var var_id="content"+n;
+	.container-fluid.d-flex.flex-column.align-items-center.p-4(id=var_id)
+		h2.text-center.my-3=h2
+			.container.row.d-flex.flex-row
+				- var a = 1
+				while a<=m
+					+content(n,a++)
+			if b == 1
+				a.btn.btn-outline-primary.mt-4(role="button" href="#")="Показать больше"
+	// end sCatalog
+
+mixin content(n,m)
+	- var text1="img/content";
+	- var text2="/content";
+	- var text3=".png";
+	- var text4=text1+n+text2+n+'_'+m+text3;
+	.col-lg-4.col-md-6.col-12.g-4
+		a(href="#")
+			img.w-100.d-block.con-col.rounded-3(src=text4 alt="...")

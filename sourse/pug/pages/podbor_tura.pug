@@ -1,0 +1,33 @@
+extends layout/main.pug
+include ../blocks/sCatalog/_sCatalog.pug
+include ../blocks/header/_header.pug
+include ../blocks/sLongMenu/_sLongMenu.pug
+include ../blocks/sPicsInfo/_sPicsInfo.pug
+include ../blocks/sInfo2/_sInfo2.pug
+block variables
+	- let  mainPage= null 
+	- let  bg= null
+
+block title
+	- let  title= 'Подбор тура'
+	title= title
+block pagecontent
+	//+mob-mnu()
+	.container-fluid.pb-lg-5#Menu(style="background-color:#008ece;")
+		+navbar
+		.container
+			+sLongMenu(1)
+			.MenuForm#MenuForm3
+				+MenuForm1
+	.container.my-5
+		.row.d-flex.flex-lg-row.flex-column.justify-content-center.align-items.center
+			+sPicsInfo(1,'Поддержка 24/7','Наша служба заботы поможет забронировать тур онлайн. Если у вас вопрос возник в поездке, ваш персональных менеджер будет круглосуточно на связи и найдёт решение в кратчайший срок')
+			+sPicsInfo(2,"Оплата частями без процентов","Внесите предоплату 10% от стоимости - и тур ваш! Остальную часть оплаты необходимо внести до установленных сроков, но не позднее, чем 7 дней до вылета")
+			+sPicsInfo(3,"Бесплатная отмена тура","Воспользуйтесь акцией бесплатной отмены тура! Никаких рисков: тур позже можно отменить, так что успейте забронировать сегодня по отличной цене")
+	+sCatalog("Лучшие предложения для отдыха",3,6,1)
+	+sInfo2("Подбор и бронирование туров онлайн","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac faucibus erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse facilisis ornare dui, at faucibus tellus fermentum at. Aliquam sit amet faucibus nibh. Donec mauris ex, placerat vitae eleifend aliquet, auctor a elit. Vestibulum sapien lorem, rhoncus ut facilisis vel, porta sit amet velit. Integer placerat mauris ut nisl mattis mattis. Etiam vestibulum nisl sed libero tincidunt, sit amet iaculis erat vestibulum. Nullam eget leo vitae elit accumsan lobortis vel auctor nisi.")
+	+footer()
+			
+
+
+
